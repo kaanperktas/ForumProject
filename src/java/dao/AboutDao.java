@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AboutDao extends DBConnection{
-    About findById(int id){
+   public About findById(int id){
         About c = null;
         try {
             Statement st = this.getConnection().createStatement();

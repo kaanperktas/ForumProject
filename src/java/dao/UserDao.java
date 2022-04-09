@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao extends DBConnection {
-    User findById(int id){
+    public User findById(int id){
         User c = null;
         try {
             Statement st = this.getConnection().createStatement();
@@ -27,7 +27,8 @@ public class UserDao extends DBConnection {
     public void create(User c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into user(mail,password,firstName,lastName) values ('"+c.getMail()+"','"+c.getPassword()+"','"+c.getFirstName()+"''"+c.getLastName()+"')";
+            String query = "insert into user(mail,password,firstName,lastName)"
+                    + " values ('"+c.getMail()+"','"+c.getPassword()+"','"+c.getFirstName()+"''"+c.getLastName()+"')";
             st.executeUpdate(query);
         
         } catch (Exception e) {

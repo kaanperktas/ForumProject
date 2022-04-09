@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminDao extends DBConnection {
-         Admin findById(int id){
+      public   Admin findById(int id){
         Admin c = null;
         try {
             Statement st = this.getConnection().createStatement();
