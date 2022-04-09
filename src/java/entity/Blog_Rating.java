@@ -14,6 +14,9 @@ public class Blog_Rating {
         this.total_score = total_score;
     }
 
+    public Blog_Rating() {
+    }
+
     public int getId() {
         return id;
     }
