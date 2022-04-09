@@ -19,6 +19,9 @@ public class Contact {
     private Boolean status;
     private Date contact_date;
 
+    public Contact() {
+        
+    }   
     public Contact(int id, int user_id, String mail, String subject, String message, Boolean status, Date contact_date) {
         this.id = id;
         this.user_id = user_id;
