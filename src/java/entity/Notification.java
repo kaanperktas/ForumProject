@@ -21,6 +21,10 @@ public class Notification {
         return id;
     }
 
+    public Notification() {
+    }
+    
+
     public void setId(int id) {
         this.id = id;
     }

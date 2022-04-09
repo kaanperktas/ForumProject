@@ -27,6 +27,9 @@ public class Writer {
         this.status = status;
     }
 
+    public Writer() {
+    }
+
     public int getId() {
         return id;
     }

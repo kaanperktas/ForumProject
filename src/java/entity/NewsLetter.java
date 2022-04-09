@@ -19,6 +19,9 @@ public class NewsLetter {
         this.status = status;
     }
 
+    public NewsLetter() {
+    }
+
     public int getId() {
         return id;
     }
