@@ -17,8 +17,8 @@ import java.util.List;
  * @author Gökhan
  */
 @Named(value = "commentLayer")
-@Dependent
-public class CommentBean {
+@SessionScoped
+public class CommentBean implements Serializable {
 
      private Comment entity;
     private CommentDao dao;

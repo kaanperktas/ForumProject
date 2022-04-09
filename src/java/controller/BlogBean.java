@@ -17,8 +17,8 @@ import java.util.List;
  * @author Gökhan
  */
 @Named(value = "blogBean")
-@Dependent
-public class BlogBean {
+@SessionScoped
+public class BlogBean implements Serializable {
 
    private Blog entity;
     private BlogDao dao;
