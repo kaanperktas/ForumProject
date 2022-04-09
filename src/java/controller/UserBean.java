@@ -11,11 +11,8 @@ import java.util.List;
 
 @Named(value = "userBean")
 @SessionScoped
-<<<<<<< Updated upstream
 public class UserBean implements Serializable {
-=======
-public class UserBean implements Serializable{
->>>>>>> Stashed changes
+
 
    private User entity;
     private UserDao dao;

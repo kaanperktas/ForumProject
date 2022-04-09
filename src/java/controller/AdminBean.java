@@ -12,13 +12,9 @@ import java.util.List;
 
 @Named(value = "adminBean")
 @SessionScoped
-<<<<<<< Updated upstream
-public class AdminBean implements Serializable {
-=======
-public class AdminBean implements Serializable{
->>>>>>> Stashed changes
 
-    
+public class AdminBean implements Serializable{
+
    private Admin entity;
     private AdminDao dao;
     private List<Admin> list;

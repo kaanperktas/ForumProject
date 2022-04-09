@@ -18,11 +18,8 @@ import java.util.List;
  */
 @Named(value = "blogRatingBean")
 @SessionScoped
-<<<<<<< Updated upstream
-public class BlogRatingBean implements Serializable {
-=======
+
 public class BlogRatingBean implements Serializable{
->>>>>>> Stashed changes
 
      private Blog_Rating entity;
     private Blog_RatingDao dao;

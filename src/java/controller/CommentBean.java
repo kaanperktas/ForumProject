@@ -18,12 +18,8 @@ import java.util.List;
  */
 @Named(value = "commentLayer")
 @SessionScoped
-<<<<<<< Updated upstream
-public class CommentBean implements Serializable {
-=======
-public class CommentBean implements Serializable{
->>>>>>> Stashed changes
 
+public class CommentBean implements Serializable {
      private Comment entity;
     private CommentDao dao;
     private List<Comment> list;
