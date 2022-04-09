@@ -1,0 +1,77 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSF/JSFManagedBean.java to edit this template
+ */
+package controller;
+
+import dao.Blog_RatingDao;
+import entity.Blog_Rating;
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.SessionScoped;
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ *
+ * @author Gökhan
+ */
+@Named(value = "blogRatingBean")
+@Dependent
+public class BlogRatingBean {
+
+     private Blog_Rating entity;
+    private Blog_RatingDao dao;
+    private List<Blog_Rating> list;
+    
+    
+    public BlogRatingBean() {
+    }
+    
+    public void clear(){
+        entity = new Blog_Rating();
+    }
+    public void create(){
+        this.getDao().create(entity);
+        entity = new Blog_Rating();
+    }
+    public void delete(Blog_Rating c){
+        this.getDao().delete(c);
+        entity = new Blog_Rating();
+    }
+    public void update(){
+        this.getDao().update(entity);
+        entity = new Blog_Rating();
+    }
+    public Blog_Rating getEntity() {
+        if(entity == null) {
+            entity = new Blog_Rating();
+        }
+        return entity;
+    }
+
+    public void setEntity(Blog_Rating entity) {
+        this.entity = entity;
+    }
+
+    public Blog_RatingDao getDao() {
+        if(dao == null) {
+            dao = new Blog_RatingDao();
+        }
+        return dao;
+    }
+
+    public void setDao(Blog_RatingDao dao) {
+        this.dao = dao;
+    }
+
+    public List<Blog_Rating> getList() {
+        this.list = this.getDao().getList();
+        return list;
+    }
+
+    public void setList(List<Blog_Rating> list) {
+        this.list = list;
+    }
+    
+}
