@@ -10,8 +10,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named(value = "userBean")
-@Dependent
-public class UserBean {
+@SessionScoped
+public class UserBean implements Serializable {
 
    private User entity;
     private UserDao dao;

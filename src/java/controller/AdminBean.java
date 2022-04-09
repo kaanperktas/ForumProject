@@ -11,8 +11,8 @@ import java.util.List;
 
 
 @Named(value = "adminBean")
-@Dependent
-public class AdminBean {
+@SessionScoped
+public class AdminBean implements Serializable {
 
     
    private Admin entity;

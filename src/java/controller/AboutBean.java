@@ -11,8 +11,8 @@ import java.util.List;
 
 
 @Named(value = "aboutBean")
-@Dependent
-public class AboutBean {
+@SessionScoped
+public class AboutBean implements Serializable {
 private About entity;
     private AboutDao dao;
     private List<About> list;
