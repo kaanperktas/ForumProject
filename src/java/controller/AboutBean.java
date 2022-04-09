@@ -3,7 +3,6 @@ package controller;
 
 import dao.AboutDao;
 import entity.About;
-import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -12,7 +11,11 @@ import java.util.List;
 
 @Named(value = "aboutBean")
 @SessionScoped
+<<<<<<< Updated upstream
 public class AboutBean implements Serializable {
+=======
+public class AboutBean implements Serializable{
+>>>>>>> Stashed changes
 private About entity;
     private AboutDao dao;
     private List<About> list;

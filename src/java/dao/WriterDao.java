@@ -19,7 +19,7 @@ public class WriterDao extends DBConnection{
         Writer c = null;
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from writer where id="+id;
+            String query = "select * from writers where id="+id;
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
@@ -38,9 +38,10 @@ public class WriterDao extends DBConnection{
     public void create(Writer c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into writer(name,about,mail,image,password,status) values "
-                    + "('"+c.getName()+"','"+c.getAbout()+"','"+c.getMail()+"','"+c.getImage()+"','"+c.getPassword()+"'"
-                    + ",'"+c.getStatus()+"')";
+            String query = "insert into writers(id,name,about,mail,image,password,status) values('"+c.getId()+"',+'"+c.getName()+"','"+c.getAbout()+"',"
+                 +    "'"+c.getMail()+"','"+c.getImage()+"','"+c.getPassword()+"'"
+                  +   ",'"+c.getStatus()+"')";
+        
             st.executeUpdate(query);
         
         } catch (Exception e) {
@@ -75,7 +76,7 @@ public class WriterDao extends DBConnection{
         List<Writer> list = new ArrayList<>();
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from writer";
+            String query = "select * from writers";
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){

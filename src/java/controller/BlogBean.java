@@ -18,7 +18,11 @@ import java.util.List;
  */
 @Named(value = "blogBean")
 @SessionScoped
+<<<<<<< Updated upstream
 public class BlogBean implements Serializable {
+=======
+public class BlogBean implements Serializable{
+>>>>>>> Stashed changes
 
    private Blog entity;
     private BlogDao dao;
