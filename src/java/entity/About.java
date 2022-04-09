@@ -21,6 +21,9 @@ public class About {
         this.status = status;
     }
 
+    public About() {
+    }
+
     public int getId() {
         return id;
     }

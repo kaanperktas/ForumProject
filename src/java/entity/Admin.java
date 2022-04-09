@@ -22,6 +22,9 @@ public class Admin {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
+
+    public Admin() {
+    }
     
 
     public int getId() {
