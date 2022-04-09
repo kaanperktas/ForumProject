@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Named(value = "notificationBean")
 @SessionScoped
-public class NotificationBean {
+public class NotificationBean implements Serializable{
 
     private Notification entity;
     private NotificationDao dao;

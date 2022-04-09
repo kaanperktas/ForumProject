@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Named(value = "writerBean")
 @SessionScoped
-public class WriterBean {
+public class WriterBean implements Serializable{
 
     private Writer entity;
     private WriterDao dao;
