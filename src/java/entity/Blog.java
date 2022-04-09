@@ -18,6 +18,9 @@ public class Blog {
         return id;
     }
 
+    public Blog() {
+    }
+
     public void setId(int id) {
         this.id = id;
     }
