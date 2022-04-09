@@ -14,6 +14,9 @@ public class Comment {
     private Boolean status;
     private int blog_id;
 
+    public Comment() {
+    }
+
     public Comment(int id, int user_id, String title, String content, Date comments_date, int blog_score, Boolean status, int blog_id) {
         this.id = id;
         this.user_id = user_id;

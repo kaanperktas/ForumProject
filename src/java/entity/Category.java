@@ -9,6 +9,9 @@ public class Category {
     private String name;
     private String description;
 
+    public Category() {
+        
+    }
     public Category(int id, String name, String description, Boolean status) {
         this.id = id;
         this.name = name;

@@ -16,6 +16,11 @@ public class Message {
     private Date message_date;
     private Boolean status;
 
+    public Message() {
+        
+    }
+
+    
     public int getId() {
         return id;
     }
