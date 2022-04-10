@@ -5,14 +5,24 @@ package entity;
 
 public class Blog_Rating {
     private int id;
-    private int blog_id;
+    private Blog blog;
     private int total_score;
 
-    public Blog_Rating(int id, int blog_id, int total_score) {
+    public Blog_Rating(int id, Blog blog, int total_score) {
         this.id = id;
-        this.blog_id = blog_id;
+        this.blog = blog;
         this.total_score = total_score;
     }
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
+
+    
 
     public Blog_Rating() {
     }
@@ -25,13 +35,6 @@ public class Blog_Rating {
         this.id = id;
     }
 
-    public int getBlog_id() {
-        return blog_id;
-    }
-
-    public void setBlog_id(int blog_id) {
-        this.blog_id = blog_id;
-    }
 
     public int getTotal_score() {
         return total_score;

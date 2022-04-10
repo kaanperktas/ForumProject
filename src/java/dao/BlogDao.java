@@ -17,7 +17,7 @@ public class BlogDao extends DBConnection{
         Blog c = null;
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from blog where id="+id;
+            String query = "select * from blogs where id="+id;
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
@@ -34,7 +34,7 @@ public class BlogDao extends DBConnection{
     public void create(Blog c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into blog(title,content,image,create_date,category_id,status,writer_id) values "
+            String query = "insert into blogs(title,content,image,create_date,category_id,status,writer_id) values "
                     + "('"+c.getTitle()+"','"+c.getContent()+"','"+c.getImage()+"','"+c.getCreate_date()+"','"+c.getCategory_id()+"','"+c.getStatus()+"'"
                     + ",'"+c.getWriter_id()+"'";
             st.executeUpdate(query);
@@ -46,7 +46,7 @@ public class BlogDao extends DBConnection{
     public void delete(Blog c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "delete from blog where id="+c.getId();
+            String query = "delete from blogs where id="+c.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -55,7 +55,7 @@ public class BlogDao extends DBConnection{
     public void update(Blog c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update blog set title='"+c.getTitle()+"' where id="+c.getId()+"' where content="+c.getContent()
+            String query = "update blogs set title='"+c.getTitle()+"' where id="+c.getId()+"' where content="+c.getContent()
                     +"' where image="+c.getImage()
                     +"' where create_date="+c.getCreate_date()
                     +"' where category_id="+c.getCategory_id()
@@ -70,7 +70,7 @@ public class BlogDao extends DBConnection{
         List<Blog> list = new ArrayList<>();
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from blog";
+            String query = "select * from blogs";
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){

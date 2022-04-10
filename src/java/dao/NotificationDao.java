@@ -5,6 +5,7 @@
 package dao;
 
 import entity.Notification;
+import java.sql.Timestamp;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -19,11 +20,11 @@ public class NotificationDao extends DBConnection{
         Notification c = null;
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from notification where id="+id;
+            String query = "select * from notifications where id="+id;
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
-                c = new Notification(rs.getInt("id"),rs.getString("type"),rs.getString("detail"),rs.getDate("notification_date")
+                c = new Notification(rs.getInt("id"),rs.getString("type"),rs.getString("detail"),rs.getTimestamp("notifications_date")
                         ,rs.getBoolean("status")
                 );
             }
@@ -37,8 +38,9 @@ public class NotificationDao extends DBConnection{
     public void create(Notification c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into notification(type,detail,notification_date,sttaus) values "
-                    + "('"+c.getType()+"','"+c.getDetail()+"','"+c.getNotification_date()+"','"+c.getStatus()+"')";
+            
+            String query = "insert into notifications(id,type,detail,notifications_date,status) values "
+                    + "('"+c.getId()+"','"+c.getType()+"','"+c.getDetail()+"','"+new Timestamp(System.currentTimeMillis())+"','"+c.getStatus()+"')";
             st.executeUpdate(query);
         
         } catch (Exception e) {
@@ -48,7 +50,7 @@ public class NotificationDao extends DBConnection{
     public void delete(Notification c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "delete from notification where id="+c.getId();
+            String query = "delete from notifications where id="+c.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -57,9 +59,9 @@ public class NotificationDao extends DBConnection{
     public void update(Notification c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update notification set type='"+c.getType()+"' where id="+c.getId()+"' where detail="+c.getDetail()
-                    +"' where notification_date="+c.getNotification_date()
-                    +"' where status="+c.getStatus();
+            String query = "update notifications set type='"+c.getType()+"',detail='"+c.getDetail()
+                    +"',notifications_date='"+c.getNotification_date()
+                    +"',status='"+c.getStatus()+ "' where id=" + c.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -69,11 +71,11 @@ public class NotificationDao extends DBConnection{
         List<Notification> list = new ArrayList<>();
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from notification";
+            String query = "select * from notifications";
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
-                list.add(new Notification(rs.getInt("id"),rs.getString("type"),rs.getString("detail"),rs.getDate("notification_date")
+                list.add(new Notification(rs.getInt("id"),rs.getString("type"),rs.getString("detail"),rs.getTimestamp("notifications_date")
                         ,rs.getBoolean("status")
                 ));
             }

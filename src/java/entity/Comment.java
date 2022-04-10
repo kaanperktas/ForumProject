@@ -1,33 +1,62 @@
 
 package entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Objects;
 
 
 public class Comment {
     private int id;
-    private int user_id;
+    private User user;
     private String title;
     private String content;
-    private Date comments_date;
+    private Timestamp comments_date;
     private int blog_score;
     private Boolean status;
-    private int blog_id;
+    private Blog blog;
 
-    public Comment() {
-    }
-
-    public Comment(int id, int user_id, String title, String content, Date comments_date, int blog_score, Boolean status, int blog_id) {
+    public Comment(int id, User user, String title, String content, Timestamp comments_date, int blog_score, Boolean status, Blog blog) {
         this.id = id;
-        this.user_id = user_id;
+        this.user = user;
         this.title = title;
         this.content = content;
         this.comments_date = comments_date;
         this.blog_score = blog_score;
         this.status = status;
-        this.blog_id = blog_id;
+        this.blog = blog;
     }
 
+    public Timestamp getComments_date() {
+        return comments_date;
+    }
+
+    public void setComments_date(Timestamp comments_date) {
+        this.comments_date = comments_date;
+    }
+
+   
+
+    public Comment() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
+
+    
     public int getId() {
         return id;
     }
@@ -36,13 +65,7 @@ public class Comment {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
+    
 
     public String getTitle() {
         return title;
@@ -60,13 +83,7 @@ public class Comment {
         this.content = content;
     }
 
-    public Date getComments_date() {
-        return comments_date;
-    }
-
-    public void setComments_date(Date comments_date) {
-        this.comments_date = comments_date;
-    }
+    
 
     public int getBlog_score() {
         return blog_score;
@@ -84,12 +101,6 @@ public class Comment {
         this.status = status;
     }
 
-    public int getBlog_id() {
-        return blog_id;
-    }
-
-    public void setBlog_id(int blog_id) {
-        this.blog_id = blog_id;
-    }
+    
     
 }

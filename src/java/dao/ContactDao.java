@@ -1,6 +1,8 @@
 package dao;
 
 import entity.Contact;
+import entity.User;
+import java.sql.Timestamp;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -11,11 +13,27 @@ import java.util.List;
  * @author CASPER
  */
 public class ContactDao extends DBConnection{
+    
+    private UserDao userDao;
+
+    public UserDao getUserDao() {
+        if(this.userDao == null){
+            userDao = new UserDao();
+        }
+        return userDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+    
+    
     public void create(Contact c){
         try{
             Statement st=this.getConnection().createStatement();
-            String query="insert into contacts (user_id,mail,subject,message,status,contact_date) values('"+c.getUser_id()+"','"+c.getMail()+"','"+c.getSubject()+"',"
-                    + "'"+c.getMessage()+"','"+c.getStatus()+"','"+c.getContact_date()+"')";
+            String query="insert into contacts (id,user_id,mail,subject,message,status,contacts_date) "
+                    + "values('"+c.getId()+"','"+c.getUser().getId()+"','"+c.getMail()+"','"+c.getSubject()+"',"
+                    + "'"+c.getMessage()+"','"+c.getStatus()+"','"+new Timestamp(System.currentTimeMillis())+"')";
             st.executeQuery(query);
         }
         catch(Exception e){
@@ -25,8 +43,10 @@ public class ContactDao extends DBConnection{
     public void update(Contact c){
         try{
             Statement st=this.getConnection().createStatement();
-            String query="update contacts set id='"+c.getUser_id()+"','"+c.getMail()+"','"+c.getSubject()+"',"
-                    + "'"+c.getMessage()+"','"+c.getStatus()+"','"+c.getContact_date()+"'where id="+c.getId();
+            String query="update contacts set user_id="+c.getUser().getId()+" ,mail='"+c.getMail()+"',subject='"+c.getSubject()+"',"
+                    + "message='"+c.getMessage()+"',status='"+c.getStatus()+"',contacts_date='"+c.getContact_date()+"'where id="+c.getId();
+            
+            
             st.executeQuery(query);
         }
         catch(Exception e){
@@ -50,8 +70,9 @@ public class ContactDao extends DBConnection{
             String query="select * from contacts";
             ResultSet rs=st.executeQuery(query);
             while(rs.next()){
-                list.add(new Contact(rs.getInt("id"),rs.getInt("user_id"),rs.getString("mail")
-                        ,rs.getString("subject"),rs.getString("message"),rs.getBoolean("status"),rs.getDate("contact_date")));
+                User u = this.getUserDao().findById(rs.getInt("user_id"));
+                list.add(new Contact(rs.getInt("id"),u,rs.getString("mail")
+                        ,rs.getString("subject"),rs.getString("message"),rs.getBoolean("status"),rs.getTimestamp("contacts_date")));
             }
         }
         catch(Exception e){
@@ -66,8 +87,9 @@ public class ContactDao extends DBConnection{
             String query="select * from contacts where id="+id;
             ResultSet rs=st.executeQuery(query);
             while(rs.next()){
-                c=new Contact(rs.getInt("id"),rs.getInt("user_id"),rs.getString("mail")
-                        ,rs.getString("subject"),rs.getString("message"),rs.getBoolean("status"),rs.getDate("contact_date"));
+                User u = this.getUserDao().findById(rs.getInt("user_id"));
+                c=new Contact(rs.getInt("id"),u,rs.getString("mail")
+                        ,rs.getString("subject"),rs.getString("message"),rs.getBoolean("status"),rs.getTimestamp("contacts_date"));
             }
         }
         catch(Exception e){

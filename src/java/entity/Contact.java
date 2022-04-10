@@ -4,6 +4,7 @@
  */
 package entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -12,25 +13,35 @@ import java.util.Date;
  */
 public class Contact {
     private int id;
-    private int user_id;
+    private User user;
     private String mail;
     private String subject;
     private String message;
     private Boolean status;
-    private Date contact_date;
+    private Timestamp contact_date;
 
     public Contact() {
         
     }   
-    public Contact(int id, int user_id, String mail, String subject, String message, Boolean status, Date contact_date) {
+
+    public Contact(int id, User user, String mail, String subject, String message, Boolean status, Timestamp contact_date) {
         this.id = id;
-        this.user_id = user_id;
+        this.user = user;
         this.mail = mail;
         this.subject = subject;
         this.message = message;
         this.status = status;
         this.contact_date = contact_date;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+   
 
     public int getId() {
         return id;
@@ -40,14 +51,7 @@ public class Contact {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
+   
     public String getMail() {
         return mail;
     }
@@ -80,12 +84,13 @@ public class Contact {
         this.status = status;
     }
 
-    public Date getContact_date() {
+    public Timestamp getContact_date() {
         return contact_date;
     }
 
-    public void setContact_date(Date contact_date) {
+    public void setContact_date(Timestamp contact_date) {
         this.contact_date = contact_date;
     }
     
+  
 }

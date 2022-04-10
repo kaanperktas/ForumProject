@@ -40,15 +40,22 @@ public class CategoryBean implements Serializable{
         return c.getName();
     }
 
-    public Category getEntity() {
+     public Category getEntity() {
+        if(entity == null) {
+            entity = new Category();
+        }
         return entity;
     }
+
 
     public void setEntity(Category entity) {
         this.entity = entity;
     }
 
     public CategoryDao getDao() {
+        if(dao == null) {
+            dao = new CategoryDao();
+        }
         return dao;
     }
 
@@ -57,6 +64,7 @@ public class CategoryBean implements Serializable{
     }
 
     public List<Category> getList() {
+        this.list = this.getDao().getList();
         return list;
     }
 

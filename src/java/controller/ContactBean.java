@@ -42,6 +42,9 @@ public class ContactBean implements Serializable{
     }
 
     public Contact getEntity() {
+        if(this.entity == null){
+            entity = new Contact();
+        }
         return entity;
     }
 
@@ -50,6 +53,9 @@ public class ContactBean implements Serializable{
     }
 
     public ContactDao getDao() {
+        if(this.dao == null){
+            dao = new ContactDao();
+        }
         return dao;
     }
 
@@ -58,6 +64,7 @@ public class ContactBean implements Serializable{
     }
 
     public List<Contact> getList() {
+        this.list = this.getDao().getList();
         return list;
     }
 

@@ -20,7 +20,7 @@ public class NewsLetterDao extends DBConnection{
         NewsLetter c = null;
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from category where id="+id;
+            String query = "select * from news_letters where id="+id;
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
@@ -36,7 +36,7 @@ public class NewsLetterDao extends DBConnection{
     public void create(NewsLetter c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into news_letter(mail,status) values ('"+c.getMail()+"','"+c.getStatus()+"')";
+            String query = "insert into news_letters(id,mail,status) values ('"+c.getId()+"','"+c.getMail()+"','"+c.getStatus()+"')";
             st.executeUpdate(query);
         
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class NewsLetterDao extends DBConnection{
     public void delete(NewsLetter c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "delete from news_letter where id="+c.getId();
+            String query = "delete from news_letters where id="+c.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -55,7 +55,7 @@ public class NewsLetterDao extends DBConnection{
     public void update(NewsLetter c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update news_letter set mail='"+c.getMail()+"' where id="+c.getId()+"' where status="+c.getStatus();
+            String query = "update news_letters set mail='"+c.getMail()+"' status="+c.getStatus()+"' where id="+c.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -65,7 +65,7 @@ public class NewsLetterDao extends DBConnection{
         List<NewsLetter> list = new ArrayList<>();
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from news_letter";
+            String query = "select * from news_letters";
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){

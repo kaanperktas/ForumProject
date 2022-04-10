@@ -8,7 +8,8 @@ public class Category {
     private int id;
     private String name;
     private String description;
-
+    private Boolean status;
+    
     public Category() {
         
     }
@@ -50,5 +51,5 @@ public class Category {
     public void setStatus(Boolean status) {
         this.status = status;
     }
-    private Boolean status;
+    
 }

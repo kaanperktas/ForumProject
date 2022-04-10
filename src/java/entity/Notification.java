@@ -4,6 +4,7 @@
  */
 package entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ public class Notification {
     private int id;
     private String type;
     private String detail;
-    private Date notification_date;
+    private Timestamp notification_date;
     private Boolean status;
 
     public int getId() {
@@ -22,6 +23,22 @@ public class Notification {
     }
 
     public Notification() {
+    }
+
+    public Timestamp getNotification_date() {
+        return notification_date;
+    }
+
+    public void setNotification_date(Timestamp notification_date) {
+        this.notification_date = notification_date;
+    }
+
+    public Notification(int id, String type, String detail, Timestamp notification_date, Boolean status) {
+        this.id = id;
+        this.type = type;
+        this.detail = detail;
+        this.notification_date = notification_date;
+        this.status = status;
     }
     
 
@@ -45,13 +62,7 @@ public class Notification {
         this.detail = detail;
     }
 
-    public Date getNotification_date() {
-        return notification_date;
-    }
-
-    public void setNotification_date(Date notification_date) {
-        this.notification_date = notification_date;
-    }
+    
 
     public Boolean getStatus() {
         return status;
@@ -61,11 +72,5 @@ public class Notification {
         this.status = status;
     }
 
-    public Notification(int id, String type, String detail, Date notification_date, Boolean status) {
-        this.id = id;
-        this.type = type;
-        this.detail = detail;
-        this.notification_date = notification_date;
-        this.status = status;
-    }
+  
 }

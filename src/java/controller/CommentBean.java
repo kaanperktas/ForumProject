@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Gökhan
  */
-@Named(value = "commentLayer")
+@Named(value = "commentBean")
 @SessionScoped
 
 public class CommentBean implements Serializable {

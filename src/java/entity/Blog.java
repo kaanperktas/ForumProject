@@ -2,6 +2,7 @@
 package entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 
 public class Blog {
@@ -13,6 +14,56 @@ public class Blog {
     private int category_id;
     private Boolean status;
     private int writer_id;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 19 * hash + this.id;
+        hash = 19 * hash + Objects.hashCode(this.title);
+        hash = 19 * hash + Objects.hashCode(this.content);
+        hash = 19 * hash + Objects.hashCode(this.image);
+        hash = 19 * hash + Objects.hashCode(this.create_date);
+        hash = 19 * hash + this.category_id;
+        hash = 19 * hash + Objects.hashCode(this.status);
+        hash = 19 * hash + this.writer_id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Blog other = (Blog) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.category_id != other.category_id) {
+            return false;
+        }
+        if (this.writer_id != other.writer_id) {
+            return false;
+        }
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        if (!Objects.equals(this.content, other.content)) {
+            return false;
+        }
+        if (!Objects.equals(this.image, other.image)) {
+            return false;
+        }
+        if (!Objects.equals(this.create_date, other.create_date)) {
+            return false;
+        }
+        return Objects.equals(this.status, other.status);
+    }
 
     public int getId() {
         return id;

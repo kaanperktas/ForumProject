@@ -8,7 +8,7 @@ import jakarta.faces.convert.Converter;
 import jakarta.faces.convert.FacesConverter;
 
 
-@FacesConverter("BlogConverter")
+@FacesConverter("blogConverter")
 public class BlogConverter implements Converter{
 
     private BlogDao blogDao;

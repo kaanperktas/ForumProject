@@ -16,7 +16,8 @@ public class CategoryDao extends DBConnection{
     public void create(Category c){
         try{
             Statement st=this.getConnection().createStatement();
-            String query="insert into categorys (name,description,status) values('"+c.getName()+"','"+c.getDescription()+"','"+c.getStatus()+"')";
+            String query="insert into categorys (id,name,description,status) values"
+                    + "('"+c.getId()+"','"+c.getName()+"','"+c.getDescription()+"','"+c.getStatus()+"')";
             st.executeQuery(query);
         }
         catch(Exception e){

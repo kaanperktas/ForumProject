@@ -3,18 +3,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>        
+        <title>Facelet Title</title>       
+         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
     </h:head>
     <h:body>
         
-       
-           
-            
-        
          <h:form>
         <div class="container mt-5" >
-            <h:commandButton styleClass="btn btn-primary" action="/panel/writer" value="writer"/>  
-        sdfghjk
+            <h:commandButton styleClass="btn btn-primary" action="/panel/writer" value="writer"/> 
+            <hr></hr>
+            <h:commandButton styleClass="btn btn-success" action="/panel/category" value="category"/>  
+            <hr></hr>
+            <h:commandButton styleClass="btn btn-primary" action="/panel/user" value="user"/>  
+            <hr></hr>
+            <h:commandButton styleClass="btn btn-warning" action="/panel/admin" value="admin"/>  
+            <hr></hr>
+            <h:commandButton styleClass="btn btn-danger" action="/panel/blog_rating" value="BlogRating"/> 
+            <hr></hr>
+            <h:commandButton styleClass="btn btn-danger" action="/panel/comment" value="comment"/>  
+            <hr></hr>
+            <h:commandButton styleClass="btn btn-warning" action="/panel/news_letter" value="newsLetter"/>  
+             <hr></hr>
+            <h:commandButton styleClass="btn btn-warning" action="/panel/notification" value="notification"/>  
+             <hr></hr>
+            <h:commandButton styleClass="btn btn-warning" action="/panel/contact" value="contact"/> 
             </div>
              </h:form>
     </h:body>
