@@ -1,9 +1,12 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dao;
 import entity.Blog;
+import entity.Category;
+import entity.Writer;
+import java.sql.Timestamp;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -13,6 +16,8 @@ import java.util.List;
  * @author Gökhan
  */
 public class BlogDao extends DBConnection{
+    CategoryDao categoryDao;
+    WriterDao writerDao;
     public Blog findById(int id){
         Blog c = null;
         try {
@@ -21,8 +26,10 @@ public class BlogDao extends DBConnection{
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
+                Category k=this.getCategoryDao().findById(rs.getInt("category_id"));
+                Writer w=this.getWriterDao().findById(rs.getInt("writer_id"));
                 c = new Blog(rs.getInt("id"),rs.getString("title"),rs.getString("content"),rs.getString("image"),
-                        rs.getDate("create_date"),rs.getInt("category_id"),rs.getBoolean("status"),rs.getInt("writer_id"));
+                        rs.getTimestamp("create_date"),k,rs.getBoolean("status"),w);
             }
             
         } catch (Exception e) {
@@ -34,9 +41,9 @@ public class BlogDao extends DBConnection{
     public void create(Blog c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into blogs(title,content,image,create_date,category_id,status,writer_id) values "
-                    + "('"+c.getTitle()+"','"+c.getContent()+"','"+c.getImage()+"','"+c.getCreate_date()+"','"+c.getCategory_id()+"','"+c.getStatus()+"'"
-                    + ",'"+c.getWriter_id()+"'";
+            String query = "insert into blogs(id,title,content,image,create_date,category_id,status,writer_id) values "
+                    + "('"+c.getId()+"','"+c.getTitle()+"','"+c.getContent()+"','"+c.getImage()+"','"+new Timestamp(System.currentTimeMillis())+"','"+c.getCategory().getId()+"','"+c.getStatus()+"'"
+                    + ",'"+c.getWriter().getId()+"')";
             st.executeUpdate(query);
         
         } catch (Exception e) {
@@ -55,12 +62,13 @@ public class BlogDao extends DBConnection{
     public void update(Blog c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update blogs set title='"+c.getTitle()+"' where id="+c.getId()+"' where content="+c.getContent()
-                    +"' where image="+c.getImage()
-                    +"' where create_date="+c.getCreate_date()
-                    +"' where category_id="+c.getCategory_id()
-                    +"' where status="+c.getStatus()
-                    +"' where writer_id="+c.getWriter_id();
+            String query = "update blogs set title='"+c.getTitle()+"', content='"+c.getContent()
+                    +"', image='"+c.getImage()
+                    +"', create_date='"+c.getCreate_date()
+                    +"', category_id="+c.getCategory().getId()
+                    +", status='"+c.getStatus()
+                    +"', writer_id="+c.getWriter().getId()
+                    +" where id="+c.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -74,8 +82,10 @@ public class BlogDao extends DBConnection{
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
+                Category c=this.getCategoryDao().findById(rs.getInt("category_id"));
+                Writer w=this.getWriterDao().findById(rs.getInt("writer_id"));
                 list.add(new Blog(rs.getInt("id"),rs.getString("title"),rs.getString("content"),rs.getString("image"),
-                        rs.getDate("create_date"),rs.getInt("category_id"),rs.getBoolean("status"),rs.getInt("writer_id")));
+                        rs.getTimestamp("create_date"),c,rs.getBoolean("status") ,w));
             }
             
         } catch (Exception e) {
@@ -83,4 +93,27 @@ public class BlogDao extends DBConnection{
         }
         return list;
     }
+
+    public CategoryDao getCategoryDao() {
+        if(categoryDao==null){
+            this.categoryDao=new CategoryDao();
+        }
+        return categoryDao;
+    }
+
+    public void setCategoryDao(CategoryDao categoryDao) {
+        this.categoryDao = categoryDao;
+    }
+
+    public WriterDao getWriterDao() {
+        if(writerDao==null){
+            this.writerDao=new WriterDao();
+        }
+        return writerDao;
+    }
+
+    public void setWriterDao(WriterDao writerDao) {
+        this.writerDao = writerDao;
+    }
+    
 }
