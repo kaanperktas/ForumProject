@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Category</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form>
+                <h:commandButton styleClass="btn btn-secondary" action="/index" value="Home"/>
+
+            </h:form>
+            <hr></hr>
+            <h:form>
+                <div class="mb-3">
+                    <label class="form-label">Id</label>
+                    <h:inputText styleClass="form-control" value="#{blogRatingBean.entity.id}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Total Score</label>
+                    <h:inputText styleClass="form-control" value="#{blogRatingBean.entity.total_score}"/>
+                </div>
+                <div class="mb-3 mt-5">
+                     <label class="form-label">Blog</label>
+                     <h:selectOneMenu styleClass="form-select" value="#{blogRatingBean.entity.blog}" converter="blogConverter">
+                        <f:selectItems value="#{blogBean.list}" var="c" itemValue="#{c}" itemLabel="#{c.title}"/>
+                    </h:selectOneMenu>
+                </div>
+                
+                <div class="mb-3">
+                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{blogRatingBean.create()}" value="Create"/>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{blogRatingBean.update()}" value="Update"/>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{blogRatingBean.clear()}" value="Clear Form"/>
+                </div>
+            
+            <hr></hr>
+
+            <h:dataTable styleClass="table table-striped table-hover" value="#{blogRatingBean.list}" var="entity">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{entity.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">BLOG</f:facet>
+                        #{entity.blog.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">TOTAL SCORE</f:facet>
+                        #{entity.total_score}
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">ADMINISTRATION</f:facet>
+                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{blogRatingBean.delete(entity)}" value="Delete"/>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{blogRatingBean.setEntity(entity)}" value="Update"/>
+                </h:column>
+            </h:dataTable>
+             </h:form>
+        </div>
+       
+    </h:body>
+</html>
