@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Category</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form>
+                <h:commandButton styleClass="btn btn-secondary" action="/index" value="Home"/>
+
+            </h:form>
+            <hr></hr>
+            <h:form>
+                <div class="mb-3">
+                    <label class="form-label">Id</label>
+                    <h:inputText styleClass="form-control" value="#{userBean.entity.id}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Mail</label>
+                    <h:inputText styleClass="form-control" value="#{userBean.entity.mail}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <h:inputText styleClass="form-control" value="#{userBean.entity.password}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">FirstName</label>
+                    <h:inputText styleClass="form-control" value="#{userBean.entity.firstName}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">LastName</label>
+                    <h:inputText styleClass="form-control" value="#{userBean.entity.lastName}"/>
+                </div>
+                <div class="mb-3">
+                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{userBean.create()}" value="Create"/>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{userBean.update()}" value="Update"/>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{userBean.clear()}" value="Clear Form"/>
+                </div>
+            
+            <hr></hr>
+
+            <h:dataTable styleClass="table table-striped table-hover" value="#{userBean.list}" var="entity">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{entity.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">MAIL</f:facet>
+                        #{entity.mail}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">PASSWORD</f:facet>
+                        #{entity.password}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">FIRSTNAME</f:facet>
+                        #{entity.firstName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">LASTNAME</f:facet>
+                        #{entity.lastName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ADMINISTRATION</f:facet>
+                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{userBean.delete(entity)}" value="Delete"/>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{userBean.setEntity(entity)}" value="Update"/>
+                </h:column>
+            </h:dataTable>
+             </h:form>
+        </div>
+       
+    </h:body>
+</html>

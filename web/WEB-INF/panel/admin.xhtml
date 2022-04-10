@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Category</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form>
+                <h:commandButton styleClass="btn btn-secondary" action="/index" value="Home"/>
+
+            </h:form>
+            <hr></hr>
+            <h:form>
+                <div class="mb-3">
+                    <label class="form-label">Id</label>
+                    <h:inputText styleClass="form-control" value="#{adminBean.entity.id}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Mail</label>
+                    <h:inputText styleClass="form-control" value="#{adminBean.entity.mail}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <h:inputText styleClass="form-control" value="#{adminBean.entity.password}"/>
+                </div>
+                <div class="mb-3 mt-5">
+                     <label class="form-label">User</label>
+                     <h:selectOneMenu styleClass="form-select" value="#{adminBean.entity.user}" converter="userConverter">
+                        <f:selectItems value="#{userBean.list}" var="c" itemValue="#{c}" itemLabel="#{c.mail}"/>
+                    </h:selectOneMenu>
+                </div>
+                
+                <div class="mb-3">
+                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{adminBean.create()}" value="Create"/>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{adminBean.update()}" value="Update"/>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{adminBean.clear()}" value="Clear Form"/>
+                </div>
+            
+            <hr></hr>
+
+            <h:dataTable styleClass="table table-striped table-hover" value="#{adminBean.list}" var="entity">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{entity.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">MAIL</f:facet>
+                        #{entity.mail}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">PASSWORD</f:facet>
+                        #{entity.password}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">USER</f:facet>
+                        #{entity.user.mail}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ADMINISTRATION</f:facet>
+                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{adminBean.delete(entity)}" value="Delete"/>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{adminBean.setEntity(entity)}" value="Update"/>
+                </h:column>
+            </h:dataTable>
+             </h:form>
+        </div>
+       
+    </h:body>
+</html>

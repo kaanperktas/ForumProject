@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Category</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form>
+                <h:commandButton styleClass="btn btn-secondary" action="/index" value="Home"/>
+
+            </h:form>
+            <hr></hr>
+            <h:form>
+                <div class="mb-3">
+                    <label class="form-label">Id</label>
+                    <h:inputText styleClass="form-control" value="#{aboutBean.entity.id}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Detail</label>
+                    <h:inputText styleClass="form-control" value="#{aboutBean.entity.detail}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Image</label>
+                    <h:inputText styleClass="form-control" value="#{aboutBean.entity.image}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <h:inputText styleClass="form-control" value="#{aboutBean.entity.status}"/>
+                </div>
+                <div class="mb-3">
+                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{aboutBean.create()}" value="Create"/>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{aboutBean.update()}" value="Update"/>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{aboutBean.clear()}" value="Clear Form"/>
+                </div>
+            
+            <hr></hr>
+
+            <h:dataTable styleClass="table table-striped table-hover" value="#{aboutBean.list}" var="entity">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{entity.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DETAIL</f:facet>
+                        #{entity.detail}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">IMAGE</f:facet>
+                        #{entity.image}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">STATUS</f:facet>
+                        #{entity.status}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ADMINISTRATION</f:facet>
+                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{aboutBean.delete(entity)}" value="Delete"/>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{aboutBean.setEntity(entity)}" value="Update"/>
+                </h:column>
+            </h:dataTable>
+             </h:form>
+        </div>
+       
+    </h:body>
+</html>
