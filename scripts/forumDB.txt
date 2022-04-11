@@ -19,3 +19,28 @@ create table writers(
 	password varchar,
 	status boolean
 );
+create table categorys(
+	id int primary key,
+	name varchar,
+	description varchar,
+	status boolean
+);
+create table contacts(
+	id int primary key,
+	user_id int,
+	mail varchar,
+	subject varchar,
+	message varchar,
+	status boolean,
+	contacts_date date,
+	CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users(id)
+);
+create table messages(
+	id int primary key,
+	sender varchar,
+	receiver varchar,
+	subject varchar,
+	details varchar,
+	messages_date date,
+	status boolean
+);
