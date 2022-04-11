@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Message</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form>
+                <h:commandButton styleClass="btn btn-secondary" action="/index" value="Home"/>
+
+            </h:form>
+            <hr></hr>
+            <h:form>
+                <div class="mb-3">
+                    <label class="form-label">Id</label>
+                    <h:inputText styleClass="form-control" value="#{messageBean.entity.id}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Sender</label>
+                    <h:inputText styleClass="form-control" value="#{messageBean.entity.sender}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Receiver</label>
+                    <h:inputText styleClass="form-control" value="#{messageBean.entity.receiver}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Subject</label>
+                    <h:inputText styleClass="form-control" value="#{messageBean.entity.subject}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Details</label>
+                    <h:inputText styleClass="form-control" value="#{messageBean.entity.details}"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <h:inputText styleClass="form-control" value="#{messageBean.entity.status}"/>
+                </div>
+                <div class="mb-3">
+                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{messageBean.create()}" value="Create"/>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{messageBean.update()}" value="Update"/>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{messageBean.clear()}" value="Clear Form"/>
+                </div>
+            
+            <hr></hr>
+
+            <h:dataTable styleClass="table table-striped table-hover" value="#{messageBean.list}" var="entity">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{entity.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">SENDER</f:facet>
+                        #{entity.sender}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">RECEIVER</f:facet>
+                        #{entity.receiver}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">SUBJECT</f:facet>
+                        #{entity.subject}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DETAILS</f:facet>
+                        #{entity.details}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">STATUS</f:facet>
+                        #{entity.status}
+                </h:column>
+              
+                <h:column>
+                    <f:facet name="header">ADMINISTRATION</f:facet>
+                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{messageBean.delete(entity)}" value="Delete"/>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{messageBean.setEntity(entity)}" value="Update"/>
+                </h:column>
+            </h:dataTable>
+             </h:form>
+        </div>
+       
+    </h:body>
+</html>

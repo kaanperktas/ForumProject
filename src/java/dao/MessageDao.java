@@ -3,6 +3,7 @@ package dao;
 import entity.Message;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class MessageDao extends DBConnection{
     public void create(Message m){
         try{
             Statement st=this.getConnection().createStatement();
-            String query="insert into messages (sender,receiver,subject,details,message_date,status) values('"+m.getSender()+"','"+m.getReceiver()+"','"+m.getSubject()+"','"+m.getDetails()+"','"+m.getMessage_date()+"','"+m.getStatus()+"')";
+            String query="insert into messages (id,sender,receiver,subject,details,messages_date,status) values("+m.getId()+",'"+m.getSender()+"','"+m.getReceiver()+"','"+m.getSubject()+"','"+m.getDetails()+"','"+new Timestamp(System.currentTimeMillis())+"','"+m.getStatus()+"')";
             st.executeQuery(query);
         }
         catch(Exception e){
@@ -24,7 +25,7 @@ public class MessageDao extends DBConnection{
     public void update(Message m){
         try{
             Statement st=this.getConnection().createStatement();
-            String query="update messages set id='"+m.getId()+"', sender='"+m.getSender()+"',receiver='"+m.getReceiver()+"',subject='"+m.getStatus()+"', details='"+m.getDetails()+"',message_date='"+m.getMessage_date()+"',status='"+m.getSubject()+"', where id="+m.getId();
+            String query="update messages set sender='"+m.getSender()+"',receiver='"+m.getReceiver()+"',subject='"+m.getSubject()+"', details='"+m.getDetails()+"',messages_date='"+new Timestamp(System.currentTimeMillis())+"',status='"+m.getStatus()+"'where id="+m.getId();
             st.executeQuery(query);
         }
         catch(Exception e){
@@ -49,7 +50,7 @@ public class MessageDao extends DBConnection{
             ResultSet rs=st.executeQuery(query);
             while(rs.next()){
                 list.add(new Message(rs.getInt("id"),rs.getString("sender"),rs.getString("receiver"),
-                        rs.getString("subject"),rs.getString("details"),rs.getDate("message_date"),rs.getBoolean("status")));
+                        rs.getString("subject"),rs.getString("details"),rs.getTimestamp("messages_date"),rs.getBoolean("status")));
             }
         }
         catch(Exception e){
@@ -65,7 +66,7 @@ public class MessageDao extends DBConnection{
             ResultSet rs=st.executeQuery(query);
             while(rs.next()){
                 m=new Message(rs.getInt("id"),rs.getString("sender"),rs.getString("receiver"),
-                        rs.getString("subject"),rs.getString("details"),rs.getDate("message_date"),rs.getBoolean("status"));
+                        rs.getString("subject"),rs.getString("details"),rs.getTimestamp("messages_date"),rs.getBoolean("status"));
             }
         }
         catch(Exception e){
@@ -74,4 +75,3 @@ public class MessageDao extends DBConnection{
         return m;
     }
 }
-

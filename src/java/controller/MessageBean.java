@@ -38,6 +38,9 @@ public class MessageBean implements Serializable{
     }
 
     public Message getEntity() {
+        if(this.entity == null){
+            entity = new Message();
+        }
         return entity;
     }
 
@@ -46,6 +49,9 @@ public class MessageBean implements Serializable{
     }
 
     public MessageDao getDao() {
+        if(this.dao == null){
+            dao = new MessageDao();
+        }
         return dao;
     }
 
@@ -54,6 +60,7 @@ public class MessageBean implements Serializable{
     }
 
     public List<Message> getList() {
+        this.list = this.getDao().getList();
         return list;
     }
 
@@ -63,4 +70,3 @@ public class MessageBean implements Serializable{
     
     
 }
-

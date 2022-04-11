@@ -1,7 +1,6 @@
-
 package entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -13,7 +12,7 @@ public class Message {
     private String receiver;
     private String subject;
     private String details;
-    private Date message_date;
+    private Timestamp message_date;
     private Boolean status;
 
     public Message() {
@@ -61,13 +60,15 @@ public class Message {
         this.details = details;
     }
 
-    public Date getMessage_date() {
+    public Timestamp getMessage_date() {
         return message_date;
     }
 
-    public void setMessage_date(Date message_date) {
+    public void setMessage_date(Timestamp message_date) {
         this.message_date = message_date;
     }
+
+    
 
     public Boolean getStatus() {
         return status;
@@ -77,7 +78,7 @@ public class Message {
         this.status = status;
     }
 
-    public Message(int id, String sender, String receiver, String subject, String details, Date message_date, Boolean status) {
+    public Message(int id, String sender, String receiver, String subject, String details, Timestamp message_date, Boolean status) {
         this.id = id;
         this.sender = sender;
         this.receiver = receiver;
@@ -86,4 +87,5 @@ public class Message {
         this.message_date = message_date;
         this.status = status;
     }
+    
 }

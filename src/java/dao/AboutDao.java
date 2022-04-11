@@ -11,11 +11,11 @@ public class AboutDao extends DBConnection{
         About c = null;
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from about where id="+id;
+            String query = "select * from abouts where id="+id;
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
-                c = new About(rs.getInt("id"), rs.getNString("detail"),rs.getString("image"),rs.getBoolean("status"));
+                c = new About(rs.getInt("id"), rs.getString("detail"),rs.getString("image"),rs.getBoolean("status"));
             }
             
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class AboutDao extends DBConnection{
     public void create(About c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into about(detail,image,status) values ('"+c.getDetail()+"','"+c.getImage()+"','"+c.getStatus()+"')";
+            String query = "insert into abouts(id,detail,image,status) values ('"+c.getId()+"','"+c.getDetail()+"','"+c.getImage()+"','"+c.getStatus()+"')";
             st.executeUpdate(query);
         
         } catch (Exception e) {
@@ -37,7 +37,7 @@ public class AboutDao extends DBConnection{
     public void delete(About c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "delete from about where id="+c.getId();
+            String query = "delete from abouts where id="+c.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -46,7 +46,7 @@ public class AboutDao extends DBConnection{
     public void update(About c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update about set detail='"+c.getDetail()+"' where image="+c.getImage()+"' where status="+c.getStatus()+"' where id="+c.getId();
+            String query = "update abouts set detail='"+c.getDetail()+"' , image='"+c.getImage()+"' , status='"+c.getStatus()+"' where id="+c.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -56,11 +56,11 @@ public class AboutDao extends DBConnection{
         List<About> list = new ArrayList<>();
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from about";
+            String query = "select * from abouts";
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
-                list.add(new About(rs.getInt("id"), rs.getNString("detail"),rs.getString("image"),rs.getBoolean("status")));
+                list.add(new About(rs.getInt("id"), rs.getString("detail"),rs.getString("image"),rs.getBoolean("status")));
             }
             
         } catch (Exception e) {
