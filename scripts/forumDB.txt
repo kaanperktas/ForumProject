@@ -44,3 +44,24 @@ create table messages(
 	messages_date date,
 	status boolean
 );
+create table abouts(
+	id int primary key,
+	detail varchar,
+	image varchar,
+	status boolean
+);
+
+create table users(
+	id int primary key,
+	mail varchar,
+	password varchar,
+	first_name varchar,
+	last_name varchar
+);
+create table admins(
+	id int primary key,
+	mail varchar,
+	user_id int,
+	password varchar,
+	CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users(id)
+);
