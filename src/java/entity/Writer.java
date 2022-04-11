@@ -4,6 +4,8 @@
  */
 package entity;
 
+import java.util.Objects;
+
 /**
  *
  * @author mabea
@@ -85,4 +87,52 @@ public class Writer {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + this.id;
+        hash = 83 * hash + Objects.hashCode(this.name);
+        hash = 83 * hash + Objects.hashCode(this.about);
+        hash = 83 * hash + Objects.hashCode(this.mail);
+        hash = 83 * hash + Objects.hashCode(this.image);
+        hash = 83 * hash + Objects.hashCode(this.password);
+        hash = 83 * hash + Objects.hashCode(this.status);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Writer other = (Writer) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.about, other.about)) {
+            return false;
+        }
+        if (!Objects.equals(this.mail, other.mail)) {
+            return false;
+        }
+        if (!Objects.equals(this.image, other.image)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        return Objects.equals(this.status, other.status);
+    }
+    
+    
 }

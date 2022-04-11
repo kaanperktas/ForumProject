@@ -2,6 +2,7 @@ package entity;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Objects;
 
 
 public class Blog {
@@ -89,6 +90,56 @@ public class Blog {
 
     public void setWriter(Writer writer) {
         this.writer = writer;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + this.id;
+        hash = 73 * hash + Objects.hashCode(this.title);
+        hash = 73 * hash + Objects.hashCode(this.content);
+        hash = 73 * hash + Objects.hashCode(this.image);
+        hash = 73 * hash + Objects.hashCode(this.create_date);
+        hash = 73 * hash + Objects.hashCode(this.category);
+        hash = 73 * hash + Objects.hashCode(this.status);
+        hash = 73 * hash + Objects.hashCode(this.writer);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Blog other = (Blog) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        if (!Objects.equals(this.content, other.content)) {
+            return false;
+        }
+        if (!Objects.equals(this.image, other.image)) {
+            return false;
+        }
+        if (!Objects.equals(this.create_date, other.create_date)) {
+            return false;
+        }
+        if (!Objects.equals(this.category, other.category)) {
+            return false;
+        }
+        if (!Objects.equals(this.status, other.status)) {
+            return false;
+        }
+        return Objects.equals(this.writer, other.writer);
     }
 
     
