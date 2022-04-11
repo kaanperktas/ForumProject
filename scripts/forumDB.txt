@@ -1,0 +1,21 @@
+create table news_letters(
+	id int primary key,
+	mail varchar,
+	status boolean
+);
+create table notifications(
+	id int primary key,
+	type varchar,
+	detail varchar,
+	notifications_date date,
+	status boolean
+);
+create table writers(
+	id int primary key,
+	name varchar,
+	about varchar,
+	mail varchar,
+	image varchar,
+	password varchar,
+	status boolean
+);
