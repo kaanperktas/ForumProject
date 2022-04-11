@@ -39,8 +39,8 @@ public class NotificationDao extends DBConnection{
         try {
             Statement st = this.getConnection().createStatement();
             
-            String query = "insert into notifications(id,type,detail,notifications_date,status) values "
-                    + "('"+c.getId()+"','"+c.getType()+"','"+c.getDetail()+"','"+new Timestamp(System.currentTimeMillis())+"','"+c.getStatus()+"')";
+            String query = "insert into notifications(type,detail,notifications_date,status) values "
+                    + "('"+c.getType()+"','"+c.getDetail()+"','"+new Timestamp(System.currentTimeMillis())+"','"+c.getStatus()+"')";
             st.executeUpdate(query);
         
         } catch (Exception e) {

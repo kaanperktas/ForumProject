@@ -41,8 +41,8 @@ public class BlogDao extends DBConnection{
     public void create(Blog c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into blogs(id,title,content,image,create_date,category_id,status,writer_id) values "
-                    + "('"+c.getId()+"','"+c.getTitle()+"','"+c.getContent()+"','"+c.getImage()+"','"+new Timestamp(System.currentTimeMillis())+"','"+c.getCategory().getId()+"','"+c.getStatus()+"'"
+            String query = "insert into blogs(title,content,image,create_date,category_id,status,writer_id) values "
+                    + "('"+c.getTitle()+"','"+c.getContent()+"','"+c.getImage()+"','"+new Timestamp(System.currentTimeMillis())+"','"+c.getCategory().getId()+"','"+c.getStatus()+"'"
                     + ",'"+c.getWriter().getId()+"')";
             st.executeUpdate(query);
         

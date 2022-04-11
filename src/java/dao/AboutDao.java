@@ -27,7 +27,7 @@ public class AboutDao extends DBConnection{
     public void create(About c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into abouts(id,detail,image,status) values ('"+c.getId()+"','"+c.getDetail()+"','"+c.getImage()+"','"+c.getStatus()+"')";
+            String query = "insert into abouts(detail,image,status) values ('"+c.getDetail()+"','"+c.getImage()+"','"+c.getStatus()+"')";
             st.executeUpdate(query);
         
         } catch (Exception e) {

@@ -42,8 +42,8 @@ public class AdminDao extends DBConnection {
     public void create(Admin c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into admins(id,mail,user_id,password) values "
-                    + "('"+c.getId()+"','"+c.getMail()+"','"+c.getUser().getId()+"','"+c.getPassword()+"')";
+            String query = "insert into admins(mail,user_id,password) values "
+                    + "('"+c.getMail()+"','"+c.getUser().getId()+"','"+c.getPassword()+"')";
             st.executeUpdate(query);
         
         } catch (Exception e) {

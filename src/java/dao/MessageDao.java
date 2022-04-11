@@ -15,7 +15,7 @@ public class MessageDao extends DBConnection{
     public void create(Message m){
         try{
             Statement st=this.getConnection().createStatement();
-            String query="insert into messages (id,sender,receiver,subject,details,messages_date,status) values("+m.getId()+",'"+m.getSender()+"','"+m.getReceiver()+"','"+m.getSubject()+"','"+m.getDetails()+"','"+new Timestamp(System.currentTimeMillis())+"','"+m.getStatus()+"')";
+            String query="insert into messages (sender,receiver,subject,details,messages_date,status) values('"+m.getSender()+"','"+m.getReceiver()+"','"+m.getSubject()+"','"+m.getDetails()+"','"+new Timestamp(System.currentTimeMillis())+"','"+m.getStatus()+"')";
             st.executeQuery(query);
         }
         catch(Exception e){

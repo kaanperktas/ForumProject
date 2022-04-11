@@ -31,8 +31,8 @@ public class ContactDao extends DBConnection{
     public void create(Contact c){
         try{
             Statement st=this.getConnection().createStatement();
-            String query="insert into contacts (id,user_id,mail,subject,message,status,contacts_date) "
-                    + "values('"+c.getId()+"','"+c.getUser().getId()+"','"+c.getMail()+"','"+c.getSubject()+"',"
+            String query="insert into contacts (user_id,mail,subject,message,status,contacts_date) "
+                    + "values('"+c.getUser().getId()+"','"+c.getMail()+"','"+c.getSubject()+"',"
                     + "'"+c.getMessage()+"','"+c.getStatus()+"','"+new Timestamp(System.currentTimeMillis())+"')";
             st.executeQuery(query);
         }

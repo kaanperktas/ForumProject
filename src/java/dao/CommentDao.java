@@ -74,8 +74,8 @@ public class CommentDao extends DBConnection {
         try {
             Statement st = this.getConnection().createStatement();
 
-            String query = "insert into comments(id,user_id,title,content,comments_date,blog_score,status,blog_id) values "
-                    + "('" + c.getId() + "','" + c.getUser().getId() + "','" + c.getTitle()+ "','" + c.getContent()+ "','" + new Timestamp(System.currentTimeMillis()) + "','" + c.getBlog_score() + "','" + c.getStatus() + "','" + c.getBlog().getId() + "')";
+            String query = "insert into comments(user_id,title,content,comments_date,blog_score,status,blog_id) values "
+                    + "('" + c.getUser().getId() + "','" + c.getTitle()+ "','" + c.getContent()+ "','" + new Timestamp(System.currentTimeMillis()) + "','" + c.getBlog_score() + "','" + c.getStatus() + "','" + c.getBlog().getId() + "')";
             st.executeUpdate(query);
 
         } catch (Exception e) {

@@ -36,7 +36,7 @@ public class NewsLetterDao extends DBConnection{
     public void create(NewsLetter c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into news_letters(id,mail,status) values ('"+c.getId()+"','"+c.getMail()+"','"+c.getStatus()+"')";
+            String query = "insert into news_letters(mail,status) values ('"+c.getMail()+"','"+c.getStatus()+"')";
             st.executeUpdate(query);
         
         } catch (Exception e) {

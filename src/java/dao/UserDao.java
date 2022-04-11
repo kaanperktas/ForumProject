@@ -32,8 +32,8 @@ public class UserDao extends DBConnection {
     public void create(User c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into users(id,mail,password,first_name,last_name) values"
-                    + " ("+c.getId()+",'"+c.getMail()+"','"+c.getPassword()+"','"+c.getFirstName()+"','"+c.getLastName()+"')";
+            String query = "insert into users(mail,password,first_name,last_name) values"
+                    + " ('"+c.getMail()+"','"+c.getPassword()+"','"+c.getFirstName()+"','"+c.getLastName()+"')";
      
             
             st.executeUpdate(query);

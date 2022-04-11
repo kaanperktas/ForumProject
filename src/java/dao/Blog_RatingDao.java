@@ -49,8 +49,8 @@ public class Blog_RatingDao extends DBConnection{
     public void create(Blog_Rating c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into blog_ratings(id,blog_id,total_score) values "
-                    + "("+c.getId()+","+c.getBlog().getId()+","+c.getTotal_score()+")";
+            String query = "insert into blog_ratings(blog_id,total_score) values "
+                    + "("+c.getBlog().getId()+","+c.getTotal_score()+")";
             st.executeUpdate(query);
         
         } catch (Exception e) {

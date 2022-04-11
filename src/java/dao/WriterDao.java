@@ -38,7 +38,7 @@ public class WriterDao extends DBConnection{
     public void create(Writer c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into writers(id,name,about,mail,image,password,status) values("+c.getId()+",'"+c.getName()+"','"+c.getAbout()+"',"
+            String query = "insert into writers(name,about,mail,image,password,status) values('"+c.getName()+"','"+c.getAbout()+"',"
                  +    "'"+c.getMail()+"','"+c.getImage()+"','"+c.getPassword()+"'"
                   +   ",'"+c.getStatus()+"')";
 
