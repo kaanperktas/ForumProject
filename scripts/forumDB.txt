@@ -1,17 +1,25 @@
-create table news_letters(
-	id int primary key,
-	mail varchar,
+create table abouts(
+	id serial primary key,
+	detail varchar,
+	image varchar,
 	status boolean
 );
-create table notifications(
-	id int primary key,
-	type varchar,
-	detail varchar,
-	notifications_date date,
-	status boolean
+create table users(
+	id serial primary key,
+	mail varchar,
+	password varchar,
+	first_name varchar,
+	last_name varchar
+);
+create table admins(
+	id serial primary key,
+	mail varchar,
+	user_id int,
+	CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users(id),
+	password varchar
 );
 create table writers(
-	id int primary key,
+	id serial primary key,
 	name varchar,
 	about varchar,
 	mail varchar,
@@ -19,55 +27,17 @@ create table writers(
 	password varchar,
 	status boolean
 );
+
+
+
 create table categorys(
-	id int primary key,
+	id serial primary key,
 	name varchar,
 	description varchar,
 	status boolean
 );
-create table contacts(
-	id int primary key,
-	user_id int,
-	mail varchar,
-	subject varchar,
-	message varchar,
-	status boolean,
-	contacts_date date,
-	CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users(id)
-);
-create table messages(
-	id int primary key,
-	sender varchar,
-	receiver varchar,
-	subject varchar,
-	details varchar,
-	messages_date date,
-	status boolean
-);
-create table abouts(
-	id int primary key,
-	detail varchar,
-	image varchar,
-	status boolean
-);
-
-create table users(
-	id int primary key,
-	mail varchar,
-	password varchar,
-	first_name varchar,
-	last_name varchar
-);
-create table admins(
-	id int primary key,
-	mail varchar,
-	user_id int,
-	password varchar,
-	CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
 create table blogs(
-	id int primary key,
+	id serial primary key,
 	title varchar,
 	content varchar,
 	image varchar,
@@ -79,7 +49,7 @@ create table blogs(
 	CONSTRAINT writer_id FOREIGN KEY (writer_id) REFERENCES writers(id)
 ); 
 create table blog_ratings(
-	id int primary key,
+	id serial primary key,
 	blog_id int,
 	total_score int,
 	CONSTRAINT blog_id FOREIGN KEY (blog_id) REFERENCES blogs(id)
@@ -87,7 +57,7 @@ create table blog_ratings(
 
 
 create table comments(
-	id int primary key,
+	id serial primary key,
 	user_id int,
 	title varchar,
 	content varchar,
@@ -97,4 +67,35 @@ create table comments(
 	blog_id int,
 	CONSTRAINT blog_id FOREIGN KEY (blog_id) REFERENCES blogs(id),
 	CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users(id)
+);
+create table contacts(
+	id serial primary key,
+	user_id int,
+	mail varchar,
+	subject varchar,
+	message varchar,
+	status boolean,
+	contacts_date date,
+	CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users(id)
+);
+create table messages(
+	id serial primary key,
+	sender varchar,
+	receiver varchar,
+	subject varchar,
+	details varchar,
+	messages_date date,
+	status boolean
+);
+create table news_letters(
+	id serial primary key,
+	mail varchar,
+	status boolean
+);
+create table notifications(
+	id serial primary key,
+	type varchar,
+	detail varchar,
+	notifications_date date,
+	status boolean
 );
