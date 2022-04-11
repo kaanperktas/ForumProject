@@ -65,3 +65,36 @@ create table admins(
 	password varchar,
 	CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+create table blogs(
+	id int primary key,
+	title varchar,
+	content varchar,
+	image varchar,
+	create_date date,
+	category_id int,
+	status boolean,
+	writer_id int,
+	CONSTRAINT category_id FOREIGN KEY (category_id) REFERENCES categorys(id),
+	CONSTRAINT writer_id FOREIGN KEY (writer_id) REFERENCES writers(id)
+); 
+create table blog_ratings(
+	id int primary key,
+	blog_id int,
+	total_score int,
+	CONSTRAINT blog_id FOREIGN KEY (blog_id) REFERENCES blogs(id)
+);
+
+
+create table comments(
+	id int primary key,
+	user_id int,
+	title varchar,
+	content varchar,
+	comments_date date,
+	blog_score int,
+	status boolean,
+	blog_id int,
+	CONSTRAINT blog_id FOREIGN KEY (blog_id) REFERENCES blogs(id),
+	CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users(id)
+);
