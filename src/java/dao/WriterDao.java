@@ -38,10 +38,10 @@ public class WriterDao extends DBConnection{
     public void create(Writer c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "insert into writers(id,name,about,mail,image,password,status) values('"+c.getId()+"',+'"+c.getName()+"','"+c.getAbout()+"',"
+            String query = "insert into writers(id,name,about,mail,image,password,status) values("+c.getId()+",'"+c.getName()+"','"+c.getAbout()+"',"
                  +    "'"+c.getMail()+"','"+c.getImage()+"','"+c.getPassword()+"'"
                   +   ",'"+c.getStatus()+"')";
-        
+
             st.executeUpdate(query);
         
         } catch (Exception e) {
@@ -51,8 +51,8 @@ public class WriterDao extends DBConnection{
     public void delete(Writer c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "delete from writers where id=";
-            st.executeUpdate(query+c.getId());
+            String query = "delete from writers where id="+c.getId();
+            st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -60,7 +60,7 @@ public class WriterDao extends DBConnection{
     public void update(Writer c){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update writers set name='"+c.getName()+"' ,about='"+c.getAbout()
+            String query = "update writers set name='"+c.getName()+"',about='"+c.getAbout()
                     +"' , status='"+c.getStatus()
                     +"' , mail='"+c.getMail()
                     +"' , image='"+c.getImage()
