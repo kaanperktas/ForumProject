@@ -1,33 +1,35 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-              xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets" 
+                template="/template.xhtml"
                 >
-    <f:metadata>
-        <f:viewParam name="id" value="#{messageBean.entity.id}"/>
-       
-    </f:metadata>
+    <ui:define name='content'>
+        <f:metadata>
+            <f:viewParam name="id" value="#{messageBean.entity.id}"/>
 
-    <h:head>
-   
+        </f:metadata>
 
-        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
-    </h:head>
-    <h:body>
-    <h:form >
-        <h:panelGrid columns="2" styleClass="table table-striped table-hover m-3">
-            <h:outputLabel value="ID : "></h:outputLabel> <h:outputText value="#{messageBean.entity.id}"></h:outputText>   
-            <h:outputLabel value="SENDER : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().sender}" ></h:outputText>
-            <h:outputLabel value="RECEIVER : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().receiver}" ></h:outputText>
-            <h:outputLabel value="SUBJECT : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().subject}" ></h:outputText>
-            <h:outputLabel value="DETAILS : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().details}" ></h:outputText>
-            <h:outputLabel value="MESSAGE DATE : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().message_date}" ></h:outputText>
-            <h:outputLabel value="STATUS : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().status}" ></h:outputText>
-        </h:panelGrid>
-        <h:commandButton styleClass="btn btn-danger m-3" action="/panel/message" value="önceki sayfa"/> 
-    </h:form>
-        
-        
-</h:body>
+        <h:head>
 
+
+            <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        </h:head>
+        <h:body>
+            <h:form >
+                <h:panelGrid columns="2" styleClass="table table-striped table-hover m-3">
+                    <h:outputLabel value="ID : "></h:outputLabel> <h:outputText value="#{messageBean.entity.id}"></h:outputText>   
+                    <h:outputLabel value="SENDER : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().sender}" ></h:outputText>
+                    <h:outputLabel value="RECEIVER : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().receiver}" ></h:outputText>
+                    <h:outputLabel value="SUBJECT : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().subject}" ></h:outputText>
+                    <h:outputLabel value="DETAILS : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().details}" ></h:outputText>
+                    <h:outputLabel value="MESSAGE DATE : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().message_date}" ></h:outputText>
+                    <h:outputLabel value="STATUS : "></h:outputLabel> <h:outputText  value="#{messageBean.findById().status}" ></h:outputText>
+                </h:panelGrid>
+                <h:commandButton styleClass="btn btn-danger m-3" action="/panel/message" value="önceki sayfa"/> 
+            </h:form>
+
+
+        </h:body>
+    </ui:define>
 </ui:composition>
 
