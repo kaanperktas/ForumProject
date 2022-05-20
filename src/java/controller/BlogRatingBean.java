@@ -74,5 +74,10 @@ public class BlogRatingBean implements Serializable{
     public void setList(List<Blog_Rating> list) {
         this.list = list;
     }
+    public Blog_Rating findById(){
+        return this.getDao().findById(entity.getId());
+       
+    }
+    
     
 }

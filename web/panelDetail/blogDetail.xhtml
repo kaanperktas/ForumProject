@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                >
+    <f:metadata>
+        <f:viewParam name="id" value="#{writerBean.entity.id}"/>
+       
+    </f:metadata>
+
+    <h:head>
+   
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+    <h:form >
+        <h:panelGrid columns="2" styleClass="table table-striped table-hover m-3">
+            <h:outputLabel value="ID : "></h:outputLabel> <h:outputText value="#{blogBean.entity.id}"></h:outputText>   
+            <h:outputLabel value="TITLE : "></h:outputLabel> <h:outputText  value="#{blogBean.findById().title}" ></h:outputText>
+            <h:outputLabel value="CONTENT : "></h:outputLabel> <h:outputText  value="#{blogBean.findById().content}" ></h:outputText>
+            <h:outputLabel value="CREATE DATE : "></h:outputLabel> <h:outputText  value="#{blogBean.findById().create_date}" ></h:outputText>
+            <h:outputLabel value="CATEGORY : "></h:outputLabel> <h:outputText  value="#{blogBean.findById().category}" ></h:outputText>
+            <h:outputLabel value="STATUS : "></h:outputLabel> <h:outputText  value="#{blogBean.findById().status}" ></h:outputText>
+            <h:outputLabel value="WRITER : "></h:outputLabel> <h:outputText  value="#{blogBean.findById().writer}" ></h:outputText>
+        </h:panelGrid>
+        <h:commandButton styleClass="btn btn-danger m-3" action="/panel/blog" value="önceki sayfa"/> 
+    </h:form>
+        
+        
+</h:body>
+
+</ui:composition>

@@ -78,5 +78,9 @@ public class BlogBean implements Serializable {
     public void setList(List<Blog> list) {
         this.list = list;
     }
+    public Blog findById(){
+        return this.getDao().findById(entity.getId());
+       
+    }
     
 }

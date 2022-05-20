@@ -73,4 +73,8 @@ public class CommentBean implements Serializable {
     public void setList(List<Comment> list) {
         this.list = list;
     }
+    public Comment findById(){
+        return this.getDao().findById(entity.getId());
+       
+    }
 }
