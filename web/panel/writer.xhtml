@@ -16,7 +16,8 @@
                 
                 <div class="mb-3">
                     <label class="form-label">Name</label>
-                    <h:inputText styleClass="form-control" value="#{writerBean.entity.name}"/>
+                    <h:inputText id="name" styleClass="form-control" validator="#{writerBean.validateName}" value="#{writerBean.entity.name}"/>
+                    <h:message for="name" style="color:red ; font-size:10pt"/> <br/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">About</label>

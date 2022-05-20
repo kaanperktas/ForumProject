@@ -16,11 +16,14 @@
                 
                 <div class="mb-3">
                     <label class="form-label">Type</label>
-                    <h:inputText styleClass="form-control" value="#{notificationBean.entity.type}"/>
+                    <h:inputText id="type" styleClass="form-control" validator="#{notificationBean.validateType}" value="#{notificationBean.entity.type}"/>
+                    <h:message for="type" style="color:red ; font-size:10pt"/> <br/>
+                
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Detail</label>
-                    <h:inputText styleClass="form-control" value="#{notificationBean.entity.detail}"/>
+                    <h:inputText id="detail" styleClass="form-control" validator="#{notificationBean.validateDetail}" value="#{notificationBean.entity.detail}"/>
+                    <h:message for="detail" style="color:red ; font-size:10pt"/> <br/>
                 </div>
                  <div class="mb-3">
                     <label class="form-label">Status</label>
