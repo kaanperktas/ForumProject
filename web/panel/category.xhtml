@@ -21,7 +21,9 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <h:inputText styleClass="form-control" value="#{categoryBean.entity.description}"/>
+                    <h:inputText id="cdescription" styleClass="form-control" value="#{categoryBean.entity.description}" required="true" requiredMessage="Tanımlama alanı boş geçilemez!">
+                    </h:inputText>
+                    <h:message for="cdescription" style="color:red ;font-size: 10pt"/><br/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Status</label>
