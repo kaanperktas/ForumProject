@@ -70,5 +70,8 @@ public class UserBean implements Serializable {
     public void setList(List<User> list) {
         this.list = list;
     }
-    
+    public User findById(){
+        return this.getDao().findById(entity.getId());
+       
+    }
 }

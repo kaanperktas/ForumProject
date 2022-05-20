@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                >
+    <f:metadata>
+        <f:viewParam name="id" value="#{userBean.entity.id}"/>
+       
+    </f:metadata>
+
+    <h:head>
+   
+
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+    <h:form >
+        <h:panelGrid columns="2" styleClass="table table-striped table-hover m-3">
+            <h:outputLabel value="ID : "></h:outputLabel> <h:outputText value="#{userBean.entity.id}"></h:outputText>   
+            <h:outputLabel value="FIRST NAME : "></h:outputLabel> <h:outputText  value="#{userBean.findById().firstName}" ></h:outputText>
+            <h:outputLabel value="LAST NAME : "></h:outputLabel> <h:outputText  value="#{userBean.findById().lastName}" ></h:outputText>
+            <h:outputLabel value="PASSWORD : "></h:outputLabel> <h:outputText  value="#{userBean.findById().password}" ></h:outputText>
+            <h:outputLabel value="MAIL : "></h:outputLabel> <h:outputText  value="#{userBean.findById().mail}" ></h:outputText>
+        </h:panelGrid>
+        <h:commandButton styleClass="btn btn-danger m-3" action="/panel/writer" value="önceki sayfa"/> 
+    </h:form>
+        
+        
+</h:body>
+
+</ui:composition>

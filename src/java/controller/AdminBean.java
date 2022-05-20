@@ -71,5 +71,9 @@ public class AdminBean implements Serializable{
     public void setList(List<Admin> list) {
         this.list = list;
     }
+    public Admin findById(){
+        return this.getDao().findById(entity.getId());
+       
+    }
     
 }

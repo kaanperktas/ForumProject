@@ -59,6 +59,13 @@
                     <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{aboutBean.delete(entity)}" value="Delete"/>
                     <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{aboutBean.setEntity(entity)}" value="Update"/>
                 </h:column>
+                <h:column>
+                    <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/aboutDetail" value="Detay görüntüle">
+                    
+                        <f:param  name = "id" value = "#{entity.id}" />
+                    
+                    </h:link > 
+                </h:column>
             </h:dataTable>
              </h:form>
         </div>

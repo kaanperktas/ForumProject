@@ -69,5 +69,8 @@ private About entity;
     public void setList(List<About> list) {
         this.list = list;
     }
-    
+    public About findById(){
+        return this.getDao().findById(entity.getId());
+       
+    }
 }
