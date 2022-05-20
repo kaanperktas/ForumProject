@@ -13,7 +13,7 @@
             </h:form>
             <hr></hr>
             <h:form>
-                
+
                 <div class="mb-3">
                     <label class="form-label">Name</label>
                     <h:inputText id="name" styleClass="form-control" validator="#{writerBean.validateName}" value="#{writerBean.entity.name}"/>
@@ -21,7 +21,11 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">About</label>
-                    <h:inputText styleClass="form-control" value="#{writerBean.entity.about}"/>
+                    <h:inputText id="a" styleClass="form-control" value="#{writerBean.entity.about}" required="true" requiredMessage="Bu alan zorunludur.">
+                        
+                    
+                    </h:inputText>
+                        <h:message for="a" style="color:red ; font-size:10pt"/> <br/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Mail</label>
@@ -44,54 +48,54 @@
                     <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{writerBean.update()}" value="Update"/>
                     <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{writerBean.clear()}" value="Clear Form"/>
                 </div>
-            
-            <hr></hr>
 
-            <h:dataTable styleClass="table table-striped table-hover" value="#{writerBean.list}" var="entity">
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                        #{entity.id}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">NAME</f:facet>
-                        #{entity.name}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">ABOUT</f:facet>
-                        #{entity.about}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">MAIL</f:facet>
-                        #{entity.mail}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">IMAGE</f:facet>
-                        #{entity.image}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">PASSWORD</f:facet>
-                        #{entity.password}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">STATUS</f:facet>
-                        #{entity.status}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{writerBean.delete(entity)}" value="Delete"/>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{writerBean.setEntity(entity)}" value="Update"/>
-                </h:column>
-                
-                <h:column>
-                    <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/writerDetail" value="Detay görüntüle">
-                    
-                        <f:param  name = "id" value = "#{entity.id}" />
-                    
-                    </h:link > 
-                </h:column>
-            </h:dataTable>
-             </h:form>
+                <hr></hr>
+
+                <h:dataTable styleClass="table table-striped table-hover" value="#{writerBean.list}" var="entity">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{entity.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">NAME</f:facet>
+                            #{entity.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ABOUT</f:facet>
+                            #{entity.about}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">MAIL</f:facet>
+                            #{entity.mail}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">IMAGE</f:facet>
+                            #{entity.image}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">PASSWORD</f:facet>
+                            #{entity.password}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">STATUS</f:facet>
+                            #{entity.status}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ADMINISTRATION</f:facet>
+                        <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{writerBean.delete(entity)}" value="Delete"/>
+                        <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{writerBean.setEntity(entity)}" value="Update"/>
+                    </h:column>
+
+                    <h:column>
+                        <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/writerDetail" value="Detay görüntüle">
+
+                            <f:param  name = "id" value = "#{entity.id}" />
+
+                        </h:link > 
+                    </h:column>
+                </h:dataTable>
+            </h:form>
         </div>
-       
-</ui:define>
+
+    </ui:define>
 </ui:composition>
