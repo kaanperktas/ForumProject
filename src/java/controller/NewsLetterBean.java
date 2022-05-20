@@ -51,7 +51,10 @@ public class NewsLetterBean implements Serializable{
         }
         return entity;
     }
-
+    public NewsLetter findById(){
+        return this.getDao().findById(entity.getId());
+       
+    }
     public void setEntity(NewsLetter entity) {
         this.entity = entity;
     }

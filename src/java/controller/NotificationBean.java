@@ -64,7 +64,10 @@ public class NotificationBean implements Serializable{
         }
         return dao;
     }
-
+    public Notification findById(){
+        return this.getDao().findById(entity.getId());
+       
+    }
     public void setDao(NotificationDao dao) {
         this.dao = dao;
     }

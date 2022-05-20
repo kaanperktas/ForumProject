@@ -133,6 +133,11 @@ public class Writer {
         }
         return Objects.equals(this.status, other.status);
     }
+
+    @Override
+    public String toString() {
+        return "Writer{" + "id=" + id + ", name=" + name + ", about=" + about + ", mail=" + mail + ", image=" + image + ", password=" + password + ", status=" + status + '}';
+    }
     
     
 }

@@ -41,6 +41,10 @@ public class WriterBean implements Serializable{
         this.getDao().delete(c);
         entity = new Writer();
     }
+     public Writer findById(){
+        return this.getDao().findById(entity.getId());
+       
+    }
     public void update(){
         this.getDao().update(entity);
         entity = new Writer();
