@@ -84,10 +84,10 @@ public class BlogRatingBean implements Serializable{
     }
     public boolean validateTotalScore(FacesContext context,UIComponent cmp,Object value)throws ValidatorException{
         
-        String v = (String) value;
+        int v = (int) value;
         
-        if(v.isEmpty()){
-            throw new ValidatorException(new FacesMessage("Total Score alanı boş olamaz"));
+        if(v < 10){
+            throw new ValidatorException(new FacesMessage("Total Score alanı 10'dan küçük olamaz"));
         }
         
         return true;
