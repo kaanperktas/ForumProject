@@ -20,8 +20,10 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Content</label>
-                    <h:inputText styleClass="form-control" required="true" requiredMessage="Bu alan zorunludur." value="#{blogBean.entity.content}"/>
-                    <h:message for="username"style="color:red ; font-size:10pt"/> <br/>
+                    <h:inputText id="con" styleClass="form-control" value="#{blogBean.entity.content}" required="true" requiredMessage="Bu alan zorunludur." >
+                    
+                    </h:inputText>
+                    <h:message for="con" style="color:red ; font-size:10pt"/> <br/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Image</label>
