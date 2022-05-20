@@ -82,16 +82,7 @@ public class BlogRatingBean implements Serializable{
         return this.getDao().findById(entity.getId());
        
     }
-    public boolean validateTotalScore(FacesContext context,UIComponent cmp,Object value)throws ValidatorException{
-        
-        int v = (int) value;
-        
-        if(v < 10){
-            throw new ValidatorException(new FacesMessage("Total Score alanı 10'dan küçük olamaz"));
-        }
-        
-        return true;
-    }
+    
     
     
 }
