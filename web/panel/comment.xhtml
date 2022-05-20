@@ -22,7 +22,8 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Title</label>
-                    <h:inputText styleClass="form-control" value="#{commentBean.entity.title}"/>
+                    <h:inputText id="title" styleClass="form-control" validator="#{commentBean.validateTitle}" value="#{commentBean.entity.title}"/>
+                    <h:message for="title" style="color:red ; font-size:10pt"/> <br/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Content</label>

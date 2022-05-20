@@ -10,6 +10,10 @@ import entity.Notification;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.ValidatorException;
 import java.io.Serializable;
 import java.util.List;
 /**
@@ -27,6 +31,30 @@ public class NotificationBean implements Serializable{
     
     
     public NotificationBean() {
+    }
+    public boolean validateType(FacesContext context,UIComponent cmp,Object value)throws ValidatorException{
+        
+        String v = (String) value;
+        
+        if(v.isEmpty()){
+            throw new ValidatorException(new FacesMessage("Tür alanı boş olamaz"));
+        }
+        else if(v.length() <5){
+            throw new ValidatorException(new FacesMessage("Tür alanı 5 karakterden küçük olamaz"));
+        }
+        return true;
+    }
+    public boolean validateDetail(FacesContext context,UIComponent cmp,Object value)throws ValidatorException{
+        
+        String v = (String) value;
+        
+        if(v.isEmpty()){
+            throw new ValidatorException(new FacesMessage("Detay alanı boş olamaz"));
+        }
+        else if(v.length() <5){
+            throw new ValidatorException(new FacesMessage("Detay alanı 5 karakterden küçük olamaz"));
+        }
+        return true;
     }
     public String getTitle(int id){
         Notification c = this.getDao().findById(id);

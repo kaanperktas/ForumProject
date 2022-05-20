@@ -17,7 +17,8 @@
                 
                 <div class="mb-3">
                     <label class="form-label">Mail</label>
-                    <h:inputText styleClass="form-control" value="#{newsLetterBean.entity.mail}"/>
+                    <h:inputText id="mail" styleClass="form-control" validator="#{newsLetterBean.validateMail}" value="#{newsLetterBean.entity.mail}"/>
+                    <h:message for="mail" style="color:red ; font-size:10pt"/> <br/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Status</label>

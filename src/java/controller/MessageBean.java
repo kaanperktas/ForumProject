@@ -1,5 +1,9 @@
 package controller;
 
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.ValidatorException;
 import dao.MessageDao;
 import entity.Message;
 import jakarta.enterprise.context.SessionScoped;
@@ -31,6 +35,13 @@ public class MessageBean implements Serializable{
     }
     public void clear(){
         entity=new Message();
+    }
+    public boolean validate(FacesContext context,UIComponent cmp,Object value)throws ValidatorException{
+        String v=(String) value; 
+        if(v.isEmpty()){
+            throw new ValidatorException(new FacesMessage("Gönderici Adı Alanı Boş Olamaz!"));
+        }
+        return true;
     }
     public String getDetails(int id){
         Message m=this.getDao().findById(id);

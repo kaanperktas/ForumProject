@@ -16,7 +16,8 @@
 
                 <div class="mb-3">
                     <label class="form-label">Sender</label>
-                    <h:inputText styleClass="form-control" value="#{messageBean.entity.sender}"/>
+                    <h:inputText id="msender" styleClass="form-control" value="#{messageBean.entity.sender}" validator="#{messageBean.validate}"/>
+                    <h:message for="msender" style="color:red ;font-size: 10pt"/><br/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Receiver</label>

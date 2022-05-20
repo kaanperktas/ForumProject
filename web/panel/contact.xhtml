@@ -22,7 +22,8 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Mail</label>
-                    <h:inputText styleClass="form-control" value="#{contactBean.entity.mail}"/>
+                    <h:inputText id="cmail" styleClass="form-control" value="#{contactBean.entity.mail}" validator="#{contactBean.validate}"/>
+                    <h:message for="cmail" style="color:red ;font-size: 10pt"/><br/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Subject</label>

@@ -1,5 +1,9 @@
 package controller;
 
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.ValidatorException;
 import dao.CategoryDao;
 import entity.Category;
 import jakarta.enterprise.context.SessionScoped;
@@ -34,6 +38,13 @@ public class CategoryBean implements Serializable{
     }
     public void clear(){
         entity=new Category();
+    }
+    public boolean validate(FacesContext context,UIComponent cmp,Object value)throws ValidatorException{
+        String v=(String) value; 
+        if(v.isEmpty()){
+            throw new ValidatorException(new FacesMessage("Kategori Adı Alanı Boş Olamaz!"));
+        }
+        return true;
     }
     public String getName(int id){
         Category c=this.getDao().findById(id);
