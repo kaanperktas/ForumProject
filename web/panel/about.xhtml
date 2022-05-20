@@ -16,7 +16,9 @@
                 
                 <div class="mb-3">
                     <label class="form-label">Detail</label>
-                    <h:inputText styleClass="form-control" value="#{aboutBean.entity.detail}"/>
+                    <h:inputText id="detail" styleClass="form-control" validator="#{aboutBean.validateDetail}" value="#{aboutBean.entity.detail}"/>
+                    <h:message for="detail" style="color:red ; font-size:10pt"/> <br/>
+                    
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Image</label>
