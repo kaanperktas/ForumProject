@@ -36,6 +36,9 @@ public class MessageBean implements Serializable{
         Message m=this.getDao().findById(id);
         return m.getDetails();
     }
+    public Message findById(){
+        return this.getDao().findById(entity.getId());
+    }
 
     public Message getEntity() {
         if(this.entity == null){

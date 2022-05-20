@@ -47,7 +47,9 @@ public class CategoryBean implements Serializable{
         return entity;
     }
 
-
+     public Category findById(){
+        return this.getDao().findById(entity.getId());
+    }
     public void setEntity(Category entity) {
         this.entity = entity;
     }

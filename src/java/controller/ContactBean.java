@@ -40,7 +40,9 @@ public class ContactBean implements Serializable{
         Contact c=this.getDao().findById(id);
         return c.getMessage();
     }
-
+    public Contact findById(){
+        return this.getDao().findById(entity.getId());   
+    }
     public Contact getEntity() {
         if(this.entity == null){
             entity = new Contact();

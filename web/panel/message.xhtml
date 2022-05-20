@@ -76,6 +76,11 @@
                     <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{messageBean.delete(entity)}" value="Delete"/>
                     <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{messageBean.setEntity(entity)}" value="Update"/>
                 </h:column>
+                <h:column>
+                    <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/messageDetail" value="Detay görüntüle">
+                        <f:param  name = "id" value = "#{entity.id}" />
+                    </h:link > 
+                </h:column>
             </h:dataTable>
              </h:form>
         </div>
