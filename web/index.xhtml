@@ -1,40 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>       
-         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
-    </h:head>
-    <h:body>
-        
-         <h:form>
-        <div class="container mt-5" >
-            <h:commandButton styleClass="btn btn-primary" action="/panel/writer" value="writer"/> 
-            <hr></hr>
-            <h:commandButton styleClass="btn btn-success" action="/panel/category" value="category"/>  
-            <hr></hr>
-            <h:commandButton styleClass="btn btn-warning" action="/panel/user" value="user"/>  
-            <hr></hr>
-            <h:commandButton styleClass="btn btn-danger" action="/panel/admin" value="admin"/>  
-            <hr></hr>
-            <h:commandButton styleClass="btn btn-primary" action="/panel/blog_rating" value="BlogRating"/> 
-            <hr></hr>
-            <h:commandButton styleClass="btn btn-success" action="/panel/comment" value="comment"/>  
-            <hr></hr>
-            <h:commandButton styleClass="btn btn-warning" action="/panel/message" value="message"/>  
-            <hr></hr>
-            <h:commandButton styleClass="btn btn-danger" action="/panel/news_letter" value="newsLetter"/>  
-             <hr></hr>
-            <h:commandButton styleClass="btn btn-primary" action="/panel/notification" value="notification"/>  
-             <hr></hr>
-            <h:commandButton styleClass="btn btn-success" action="/panel/contact" value="contact"/> 
-            <hr></hr>
-            <h:commandButton styleClass="btn btn-danger" action="/panel/blog" value="blog"/> 
-            <hr></hr>
-            <h:commandButton styleClass="btn btn-primary" action="/panel/about" value="about"/> 
-            
-            </div>
-             </h:form>
-    </h:body>
-</html>
+ <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template.xhtml"
+                >
+     <ui:define name='content'>
+         
+     </ui:define>
+</ui:composition>
