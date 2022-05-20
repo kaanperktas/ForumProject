@@ -16,11 +16,12 @@
                 
                 <div class="mb-3">
                     <label class="form-label">Mail</label>
-                    <h:inputText styleClass="form-control" value="#{userBean.entity.mail}"/>
+                    <h:inputText styleClass="form-control"  value="#{userBean.entity.mail}"/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <h:inputText styleClass="form-control" value="#{userBean.entity.password}"/>
+                    <h:inputText id="Password" styleClass="form-control" validator="#{userBean.validatePassword}" value="#{userBean.entity.password}"/>
+                    <h:message for="Password" style="color:red ; font-size:10pt"/> <br/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">FirstName</label>

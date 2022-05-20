@@ -6,6 +6,10 @@ import entity.Admin;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.ValidatorException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -74,6 +78,18 @@ public class AdminBean implements Serializable{
     public Admin findById(){
         return this.getDao().findById(entity.getId());
        
+    }
+    public boolean validateMail(FacesContext context,UIComponent cmp,Object value)throws ValidatorException{
+        
+        String v = (String) value;
+        
+        if(v.isEmpty()){
+            throw new ValidatorException(new FacesMessage("Mail alanı boş olamaz"));
+        }
+        else if(v.length() <5){
+            throw new ValidatorException(new FacesMessage("Mail alanı 5 karakterden küçük olamaz"));
+        }
+        return true;
     }
     
 }
