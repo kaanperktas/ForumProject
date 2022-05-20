@@ -9,33 +9,44 @@
 
     </h:head>
     <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <ui:insert name="menu">
+                        <h:form>
+                            <div class="d-flex align-items-start m-4">
+                                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    <h:commandButton styleClass="btn btn-primary" action="/panel/writer" value="writer"/> <br></br>
+                                    <h:commandButton styleClass="btn btn-success" action="/panel/category" value="category"/>  <br></br>
+                                    <h:commandButton styleClass="btn btn-warning" action="/panel/user" value="user"/>   <br></br>
+                                    <h:commandButton styleClass="btn btn-danger" action="/panel/admin" value="admin"/>      <br></br>
+                                    <h:commandButton styleClass="btn btn-primary" action="/panel/blog_rating" value="BlogRating"/>   <br></br>
+                                    <h:commandButton styleClass="btn btn-success" action="/panel/comment" value="comment"/>      <br></br>
+                                    <h:commandButton styleClass="btn btn-warning" action="/panel/message" value="message"/>      <br></br>
+                                    <h:commandButton styleClass="btn btn-danger" action="/panel/news_letter" value="newsLetter"/>     <br></br>
+                                    <h:commandButton styleClass="btn btn-primary" action="/panel/notification" value="notification"/> <br></br>
+                                    <h:commandButton styleClass="btn btn-success" action="/panel/contact" value="contact"/>     <br></br>
+                                    <h:commandButton styleClass="btn btn-danger" action="/panel/blog" value="blog"/>     <br></br>
+                                    <h:commandButton styleClass="btn btn-warning" action="/panel/about" value="about"/>    <br></br> 
 
-        <ui:insert name="menu">
-            <h:form>
-                <div class="d-flex align-items-start m-4">
-                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <h:commandButton styleClass="btn btn-primary" action="/panel/writer" value="writer"/> <br></br>
-                        <h:commandButton styleClass="btn btn-success" action="/panel/category" value="category"/>  <br></br>
-                        <h:commandButton styleClass="btn btn-warning" action="/panel/user" value="user"/>   <br></br>
-                        <h:commandButton styleClass="btn btn-danger" action="/panel/admin" value="admin"/>      <br></br>
-                        <h:commandButton styleClass="btn btn-primary" action="/panel/blog_rating" value="BlogRating"/>   <br></br>
-                        <h:commandButton styleClass="btn btn-success" action="/panel/comment" value="comment"/>      <br></br>
-                        <h:commandButton styleClass="btn btn-warning" action="/panel/message" value="message"/>      <br></br>
-                        <h:commandButton styleClass="btn btn-danger" action="/panel/news_letter" value="newsLetter"/>     <br></br>
-                        <h:commandButton styleClass="btn btn-primary" action="/panel/notification" value="notification"/> <br></br>
-                        <h:commandButton styleClass="btn btn-success" action="/panel/contact" value="contact"/>     <br></br>
-                        <h:commandButton styleClass="btn btn-danger" action="/panel/blog" value="blog"/>     <br></br>
-                        <h:commandButton styleClass="btn btn-warning" action="/panel/about" value="about"/>    <br></br> 
+                                </div>
+                            </div>
 
-                    </div>
+                        </h:form>
+                    </ui:insert>
+                </div>
+                <div class="col-9">
+                    <ui:insert name="content">
+                        Default Content 
+
+                    </ui:insert>
                 </div>
 
-            </h:form>
-        </ui:insert>
-        <ui:insert name="content">
-            Default Content 
+            </div>
+        </div>
 
-        </ui:insert>
+
+
     </h:body>
 </html>
 
