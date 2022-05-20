@@ -58,7 +58,7 @@ public class CommentDao extends DBConnection {
 
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                c = new Comment(rs.getInt("id"), this.userDao.findById(rs.getInt("user_id")), rs.getString("title"), rs.getString("content"), rs.getTimestamp("commnets_date"),
+                c = new Comment(rs.getInt("id"), this.userDao.findById(rs.getInt("user_id")), rs.getString("title"), rs.getString("content"), rs.getTimestamp("comments_date"),
                         rs.getInt("blog_score"),
                         rs.getBoolean("status"),
                         this.blogDao.findById(rs.getInt("blog_id")));
