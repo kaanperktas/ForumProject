@@ -16,13 +16,13 @@
     <h:form >
         <h:panelGrid columns="2" styleClass="table table-striped table-hover m-3">
             <h:outputLabel value="ID : "></h:outputLabel> <h:outputText value="#{commentBean.entity.id}"></h:outputText>   
-            <h:outputLabel value="USER : "></h:outputLabel> <h:outputText  value="#{commentBean.findById().user}" ></h:outputText>
+            <h:outputLabel value="USER : "></h:outputLabel> <h:outputText  value="#{commentBean.findById().user.firstName}" ></h:outputText>
             <h:outputLabel value="TITLE : "></h:outputLabel> <h:outputText  value="#{commentBean.findById().title}" ></h:outputText>
             <h:outputLabel value="CONTENT : "></h:outputLabel> <h:outputText  value="#{commentBean.findById().content}" ></h:outputText>
             <h:outputLabel value="COMMENTS DATE : "></h:outputLabel> <h:outputText  value="#{commentBean.findById().comments_date}" ></h:outputText>
             <h:outputLabel value="BLOG SCORE : "></h:outputLabel> <h:outputText  value="#{commentBean.findById().blog_score}" ></h:outputText>
             <h:outputLabel value="STATUS : "></h:outputLabel> <h:outputText  value="#{commentBean.findById().status}" ></h:outputText>
-            <h:outputLabel value="BLOG : "></h:outputLabel> <h:outputText  value="#{commentBean.findById().blog}" ></h:outputText>
+            <h:outputLabel value="BLOG : "></h:outputLabel> <h:outputText  value="#{commentBean.findById().blog.title}" ></h:outputText>
         </h:panelGrid>
         <h:commandButton styleClass="btn btn-danger m-3" action="/panel/comment" value="önceki sayfa"/> 
     </h:form>
