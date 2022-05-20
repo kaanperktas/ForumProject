@@ -4,6 +4,10 @@
  */
 package controller;
 
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.ValidatorException;
 import dao.ContactDao;
 import entity.Contact;
 import jakarta.enterprise.context.SessionScoped;
@@ -35,6 +39,13 @@ public class ContactBean implements Serializable{
     }
     public void clear(){
         entity=new Contact();
+    }
+    public boolean validate(FacesContext context,UIComponent cmp,Object value)throws ValidatorException{
+        String v=(String) value; 
+        if(v.isEmpty()){
+            throw new ValidatorException(new FacesMessage("Mail Alanı Boş Olamaz!"));
+        }
+        return true;
     }
     public String getMessage(int id){
         Contact c=this.getDao().findById(id);
