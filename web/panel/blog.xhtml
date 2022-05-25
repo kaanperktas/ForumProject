@@ -102,6 +102,18 @@
                 </h:column>
             </h:dataTable>
             </h:form>
+            <h2>Dosya Yükleyiniz</h2>
+		<p>
+			<h:outputText style="color:red ; font-size:10pt" value="#{blogBean.message}"
+				rendered="#{!empty blogBean.message}"></h:outputText>
+			<h:form  enctype="multipart/form-data">
+				<h:panelGrid>
+					<h:inputFile value="#{blogBean.file1}" styleClass="btn btn-danger"></h:inputFile>
+					<h:commandButton styleClass="btn btn-warning" action="#{blogBean.uploadFile()}"
+						value="Upload"></h:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</p>
         </div>
 
 </ui:define>
