@@ -33,7 +33,7 @@ public class LoginFilter implements Filter{
                  response.sendRedirect(request.getContextPath()+"/login.xhtml");
             }
             else{
-                fc.doFilter(sr, sr1); // ne talep ettiysek o sayfaya gidebiilsin
+                fc.doFilter(sr, sr1); 
             }
         }
         else{
@@ -46,7 +46,7 @@ public class LoginFilter implements Filter{
                response.sendRedirect(request.getContextPath()+"/index.xhtml");
             }
             else{
-                 fc.doFilter(sr, sr1); // ne talep ettiysek o sayfaya gidebiilsin
+                 fc.doFilter(sr, sr1); 
             }
         }
     }

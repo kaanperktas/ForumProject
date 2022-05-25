@@ -74,11 +74,15 @@ public class BlogDao extends DBConnection{
             System.out.println(e.getMessage());
         }
     }
-    public List<Blog> getList(){
+    public List<Blog> getList(int page,int pageSize){
         List<Blog> list = new ArrayList<>();
+        int start = (page-1) * pageSize;
+        if(start <0){
+            start =0 ;
+        }
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from blogs";
+            String query = "select * from blogs order by id asc limit "+pageSize+" offset "+start;
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
@@ -114,6 +118,24 @@ public class BlogDao extends DBConnection{
 
     public void setWriterDao(WriterDao writerDao) {
         this.writerDao = writerDao;
+    }
+    
+    public int count(){
+        int count = 0 ;
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "select count(id) as count from blogs";
+            
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
+            count = rs.getInt("count");
+                
+            
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
     }
     
 }
