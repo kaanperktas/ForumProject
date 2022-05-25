@@ -95,6 +95,18 @@
                     </h:column>
                 </h:dataTable>
             </h:form>
+            <h2>Dosya Yükleyiniz</h2>
+		<p>
+			<h:outputText style="color:red ; font-size:10pt" value="#{writerBean.message}"
+				rendered="#{!empty writerBean.message}"></h:outputText>
+			<h:form  enctype="multipart/form-data">
+				<h:panelGrid>
+					<h:inputFile value="#{writerBean.file1}" styleClass="btn btn-danger"></h:inputFile>
+					<h:commandButton styleClass="btn btn-warning" action="#{writerBean.uploadFile()}"
+						value="Upload"></h:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</p>
         </div>
 
     </ui:define>
