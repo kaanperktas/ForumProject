@@ -26,4 +26,28 @@ public class LoginFilter implements Filter{
         
         User user = null;
         
-        user=session != null ? (User)session.getAttribute("validUser"):null ;}}
+        user=session != null ? (User)session.getAttribute("validUser"):null ;
+        
+        if(user == null){
+            if(url.contains("logout") || url.contains("private")){
+                 response.sendRedirect(request.getContextPath()+"/login.xhtml");
+            }
+            else{
+                fc.doFilter(sr, sr1); // ne talep ettiysek o sayfaya gidebiilsin
+            }
+        }
+        else{
+            if(url.contains("register")){
+                response.sendRedirect(request.getContextPath()+"/index.xhtml");
+            }
+            
+            else if(url.contains("logout")){
+               session.invalidate();
+               response.sendRedirect(request.getContextPath()+"/login.xhtml");
+            }
+            else{
+                 fc.doFilter(sr, sr1); // ne talep ettiysek o sayfaya gidebiilsin
+            }
+        }
+    }
+}
