@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSF/JSFManagedBean.java to edit this template
  */
@@ -13,8 +13,14 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.validator.ValidatorException;
+import jakarta.servlet.http.Part;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.util.List;
+import utils.Utils;
 
 /**
  *
@@ -26,11 +32,66 @@ import java.util.List;
 public class BlogBean implements Serializable {
 
 
-   private Blog entity;
+    private Blog entity;
     private BlogDao dao;
     private List<Blog> list;
+    private Part file1;
+	private String message;
+
     
+
+    public Part getFile1() {
+        return file1;
+    }
+
+    public void setFile1(Part file1) {
+        this.file1 = file1;
+    }
+
+  
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
     
+    public String uploadFile() throws IOException {
+		boolean file1Success = false;
+
+		if (file1 != null && file1.getSize() > 0) {
+			String fileName = Utils.getFileNameFromPart(file1);
+
+			
+			File savedFile = new File("/internet", fileName);
+
+			
+
+			try (InputStream input = file1.getInputStream()) {
+				Files.copy(input, savedFile.toPath());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			file1Success = true;
+		}
+
+
+		if (file1Success) {
+			
+			setMessage("Dosya başarıyla yüklendi");
+		} else {
+			
+			setMessage("Dosya yüklenemedi. Lütfen başka bir dosya seçiniz!!");
+		}
+
+		
+		return null;
+	}
+    
+
     public BlogBean() {
     }
     public String getTitle(int id){
