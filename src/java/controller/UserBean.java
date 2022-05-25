@@ -138,6 +138,12 @@ public class UserBean implements Serializable {
         return this.getDao().findById(entity.getId());
        
     }
+    public User findByMail(String mail){
+        return this.getDao().findByMail(mail);
+    }
+    public User findByPassword(String password){
+        return this.getDao().findByPassword(password);
+    }
     public boolean validatePassword(FacesContext context,UIComponent cmp,Object value)throws ValidatorException{
         
         String v = (String) value;

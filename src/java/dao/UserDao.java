@@ -28,7 +28,38 @@ public class UserDao extends DBConnection {
         }
         return c;
     }
-        
+       public User findByMail(String mail){
+        User c = null;
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "select * from users where mail='"+mail+"'";
+            
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                c = new User(rs.getInt("id"), rs.getString("mail"),rs.getString("password"),rs.getString("first_name"),rs.getString("last_name"));
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return c;
+    } 
+       public User findByPassword(String password){
+        User c = null;
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "select * from users where passsword="+password;
+            
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                c = new User(rs.getInt("id"), rs.getString("mail"),rs.getString("password"),rs.getString("first_name"),rs.getString("last_name"));
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return c;
+    } 
     public void create(User c){
         try {
             Statement st = this.getConnection().createStatement();
