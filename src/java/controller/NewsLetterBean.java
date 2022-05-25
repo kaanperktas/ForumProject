@@ -23,6 +23,9 @@ import java.util.List;
 @SessionScoped
 public class NewsLetterBean implements Serializable{
 
+    private int page=0;
+    private int pageSize= 5;
+    private int pageCount;
     private NewsLetter entity;
     private NewsLetterDao dao;
     private List<NewsLetter> list;
@@ -30,6 +33,48 @@ public class NewsLetterBean implements Serializable{
     
     public NewsLetterBean() {
     }
+    public void next(){
+        if(this.page == this.getPageCount()){
+            this.page =1;
+        }else{
+            this.page++;
+        }
+        System.out.println("+++++++++++++++++++++++"+page+"++++++++++++++++++");
+        
+    }
+    public void previous(){System.out.println(page);
+        if(this.page == 1){
+            this.page =this.getPageCount();
+        }else{
+            this.page--;
+        }
+        System.out.println("+++++++++++++++++++++++"+page+"++++++++++++++++++");
+    }
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageCount() {
+        this.pageCount= (int)Math.ceil(this.getDao().count()/(double)pageSize); //kaç sayfamız olduğunu bulacak
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+    
      public boolean validateMail(FacesContext context,UIComponent cmp,Object value)throws ValidatorException{
         
         String v = (String) value;
@@ -87,7 +132,7 @@ public class NewsLetterBean implements Serializable{
     }
 
     public List<NewsLetter> getList() {
-        this.list = this.getDao().getList();
+        this.list = this.getDao().getList(page,pageSize);
         return list;
     }
 
