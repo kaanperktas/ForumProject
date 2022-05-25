@@ -10,8 +10,14 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.validator.ValidatorException;
+import jakarta.servlet.http.Part;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.util.List;
+import utils.Utils;
 
 @Named(value = "userBean")
 @SessionScoped
@@ -21,7 +27,61 @@ public class UserBean implements Serializable {
    private User entity;
     private UserDao dao;
     private List<User> list;
+    private Part file1;
+	private String message;
+
     
+
+    public Part getFile1() {
+        return file1;
+    }
+
+    public void setFile1(Part file1) {
+        this.file1 = file1;
+    }
+
+  
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    public String uploadFile() throws IOException {
+		boolean file1Success = false;
+
+		if (file1 != null && file1.getSize() > 0) {
+			String fileName = Utils.getFileNameFromPart(file1);
+
+			
+			File savedFile = new File("/internet", fileName);
+
+			
+
+			try (InputStream input = file1.getInputStream()) {
+				Files.copy(input, savedFile.toPath());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			file1Success = true;
+		}
+
+
+		if (file1Success) {
+			
+			setMessage("Dosya başarıyla yüklendi");
+		} else {
+			
+			setMessage("Dosya yüklenemedi. Lütfen başka bir dosya seçiniz!!");
+		}
+
+		
+		return null;
+	}
     
     public UserBean() {
     }
