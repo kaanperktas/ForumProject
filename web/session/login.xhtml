@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+        <div class="container card m-5" style="width: 48rem; text-align: center">
+            <h:form>
+
+                <div class="mb-3 row m-3">
+                    <h:outputText styleClass="col-sm-2 col-form-label" value="EMail">Email</h:outputText>
+                    <div class="col-sm-10">
+                        <h:inputText value="#{lc.user.userName}"></h:inputText>
+                    </div>
+                </div>
+                <div class="mb-3 row m-3">
+                    <h:outputText styleClass="col-sm-2 col-form-label" value="Password">Password</h:outputText>
+                    <div class="col-sm-10">
+                        <h:inputText value="#{lc.user.userName}"></h:inputText>
+                    </div>
+                </div>
+                <h:commandButton styleClass="btn btn-primary" action="#{lc.login()}" value="login"></h:commandButton>
+            </h:form>
+        </div>
+        </div>
+    </h:body>
+</html>
+

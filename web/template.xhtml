@@ -10,10 +10,34 @@
     </h:head>
     <h:body>
         <div class="container">
+            <h:form>
+            <nav class="navbar navbar-dark bg-dark m-4 p-2 w-80 p-sm-1 ">
+                                <div class="container-fluid">
+                                    <a class="navbar-brand" href="#">Forum Project</a>
+                                    
+                                        <ul class="navbar">
+                                            <li class="nav-item">
+                                                <h:commandButton class="nav-link btn btn-outline-light btn-sm m-2"  style="color: #ffc720" action="/index" value="Home"/> <br></br>
+
+                                            </li>
+                                            <li class="nav-item">
+                                                <h:commandButton class="nav-link btn btn-outline-light btn-sm m-2"  style="color: #ffc720" action="/session/login" value="Login"/> <br></br>
+                                            </li>
+                                            <li class="nav-item">
+                                                <h:commandButton class="nav-link btn btn-outline-light btn-sm m-2"  style="color: #ffc720" action="/session/register" value="Register"/> <br></br>
+                                            </li>
+                                            
+                                        </ul>
+                                </div>
+                            </nav>
+                </h:form>
             <div class="row">
                 <div class="col-3">
                     <ui:insert name="menu">
+                        
                         <h:form>
+                            
+                
                             <div class="d-flex align-items-start m-4">
                                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     <h:commandButton styleClass="btn btn-primary" action="/panel/writer" value="writer"/> <br></br>
@@ -28,8 +52,8 @@
                                     <h:commandButton styleClass="btn btn-success" action="/panel/contact" value="contact"/>     <br></br>
                                     <h:commandButton styleClass="btn btn-danger" action="/panel/blog" value="blog"/>     <br></br>
                                     <h:commandButton styleClass="btn btn-warning" action="/panel/about" value="about"/>    <br></br> 
-                                     
-                                    
+
+
 
                                 </div>
                             </div>
@@ -39,7 +63,7 @@
                 </div>
                 <div class="col-9">
                     <ui:insert name="content">
-                         
+
 
                     </ui:insert>
                 </div>
