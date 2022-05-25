@@ -9,6 +9,8 @@
         <div class="container">
             <h:form>
                 <h:commandButton styleClass="btn btn-secondary" action="/index" value="Home"/>
+                <h:commandButton action="#{userBean.previous()}" value="previous" class="btn btn-danger m-1 text-lg-end"/>
+                <h:commandButton action="#{userBean.next()}" value="next" class="btn btn-danger"/>
 
             </h:form>
             <hr></hr>

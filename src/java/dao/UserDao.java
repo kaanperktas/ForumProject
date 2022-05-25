@@ -93,11 +93,15 @@ public class UserDao extends DBConnection {
             System.out.println(e.getMessage());
         }
     }
-    public List<User> getList(){
-        List<User> list = new ArrayList<>();
+    public List<User> getList(int page,int pageSize){
+               List<User> list = new ArrayList<>();
+        int start = (page-1) * pageSize;
+        if(start <0){
+            start =0 ;
+        }
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from users";
+            String query = "select * from users order by id asc limit "+pageSize+" offset "+start;
             
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
@@ -109,5 +113,21 @@ public class UserDao extends DBConnection {
         }
         return list;
     }
-    
+    public int count(){
+        int count = 0 ;
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "select count(id) as count from users";
+            
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
+            count = rs.getInt("count");
+                
+            
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
+    }
 }
