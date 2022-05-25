@@ -9,22 +9,25 @@
     <h:body>
         <div class="container">
         <div class="container card m-5" style="width: 48rem; text-align: center">
+            <h:outputText styleClass="col-sm-2 col-form-label" style="width: 48rem; color: white;background-color: #eccccf"
+                          value="LOGIN FORMU :">Email :</h:outputText>
+
             <h:form>
 
                 <div class="mb-3 row m-3">
-                    <h:outputText styleClass="col-sm-2 col-form-label" value="EMail">Email</h:outputText>
+                    <h:outputText styleClass="col-sm-2 col-form-label" style=" color: white;background-color: #eccccf" value="EMail :">Email :</h:outputText>
                     <div class="col-sm-10">
                         <h:inputText value="#{lc.user.mail}"></h:inputText>
                     </div>
                 </div>
                 <div class="mb-3 row m-3">
-                    <h:outputText styleClass="col-sm-2 col-form-label" value="Password">Password</h:outputText>
+                    <h:outputText styleClass="col-sm-2 col-form-label" style="color: white;background-color: #eccccf" value="Password :">Password :</h:outputText>
                     <div class="col-sm-10">
                         <h:inputText value="#{lc.user.password}"></h:inputText>
                     </div>
                 </div>
-                <h:commandButton styleClass="btn btn-primary" action="#{lc.login()}" value="login"></h:commandButton>
-             
+                <h:commandButton styleClass="btn btn-warning m-3" action="#{lc.login()}" value="login"></h:commandButton>
+                <h:commandButton styleClass="btn btn-warning" action="/index?faces-redirect-true" value="logout"></h:commandButton>
             
             </h:form>
    <h:panelGroup rendered="#{validUser !=null}" layout="block">

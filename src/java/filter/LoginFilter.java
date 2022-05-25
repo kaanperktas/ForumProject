@@ -41,9 +41,9 @@ public class LoginFilter implements Filter{
                 response.sendRedirect(request.getContextPath()+"/index.xhtml");
             }
             
-            else if(url.contains("logout")){
+            else if(url.contains("index")){
                session.invalidate();
-               response.sendRedirect(request.getContextPath()+"/login.xhtml");
+               response.sendRedirect(request.getContextPath()+"/index.xhtml");
             }
             else{
                  fc.doFilter(sr, sr1); // ne talep ettiysek o sayfaya gidebiilsin
