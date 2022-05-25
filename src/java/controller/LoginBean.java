@@ -21,6 +21,7 @@ public class LoginBean implements Serializable {
         
         if(user.getMail().equals("test") && user.getPassword().equals("1234")){
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("validUser", user);
+            
         }else{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("username or password is wrong"));
         }

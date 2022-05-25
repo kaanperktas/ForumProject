@@ -14,17 +14,26 @@
                 <div class="mb-3 row m-3">
                     <h:outputText styleClass="col-sm-2 col-form-label" value="EMail">Email</h:outputText>
                     <div class="col-sm-10">
-                        <h:inputText value="#{lc.user.userName}"></h:inputText>
+                        <h:inputText value="#{lc.user.mail}"></h:inputText>
                     </div>
                 </div>
                 <div class="mb-3 row m-3">
                     <h:outputText styleClass="col-sm-2 col-form-label" value="Password">Password</h:outputText>
                     <div class="col-sm-10">
-                        <h:inputText value="#{lc.user.userName}"></h:inputText>
+                        <h:inputText value="#{lc.user.password}"></h:inputText>
                     </div>
                 </div>
                 <h:commandButton styleClass="btn btn-primary" action="#{lc.login()}" value="login"></h:commandButton>
+             
+            
             </h:form>
+   <h:panelGroup rendered="#{validUser !=null}" layout="block">
+       <h:outputText styleClass="col-sm-2 col-form-label" value="Giriş Başarılı">
+         </h:outputText>
+           
+        </h:panelGroup>
+               
+    
         </div>
         </div>
     </h:body>
