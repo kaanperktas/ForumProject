@@ -16,10 +16,54 @@ import java.util.List;
 @SessionScoped
 public class MessageBean implements Serializable{
 
+    private int page=0;
+    private int pageSize= 5;
+    private int pageCount;
     private Message entity;
     private MessageDao dao;
     private List<Message> list;
     public MessageBean() {
+    }
+    public void next(){
+        if(this.page == this.getPageCount()){
+            this.page =1;
+        }else{
+            this.page++;
+        }
+        System.out.println("+++++++++++++++++++++++"+page+"++++++++++++++++++");
+        
+    }
+    public void previous(){System.out.println(page);
+        if(this.page == 1){
+            this.page =this.getPageCount();
+        }else{
+            this.page--;
+        }
+        System.out.println("+++++++++++++++++++++++"+page+"++++++++++++++++++");
+    }
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageCount() {
+        this.pageCount= (int)Math.ceil(this.getDao().count()/(double)pageSize); //kaç sayfamız olduğunu bulacak
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
     }
     public void create(){
         this.getDao().create(entity);
@@ -74,7 +118,7 @@ public class MessageBean implements Serializable{
     }
 
     public List<Message> getList() {
-        this.list = this.getDao().getList();
+        this.list = this.getDao().getList(page,pageSize);
         return list;
     }
 
