@@ -14,6 +14,7 @@ public class DBConnection {
 
                 this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/forumDB", "postgres", "12345");        
 
+
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }

@@ -11,9 +11,10 @@
                 <h:commandButton styleClass="btn btn-secondary" action="/index" value="Home"/>
                 <h:commandButton action="#{blogBean.previous()}" value="previous" class="btn btn-danger m-1 text-lg-end"/>
                 <h:commandButton action="#{blogBean.next()}" value="next" class="btn btn-danger"/>
+                
             </h:form>
             <hr></hr>
-            <h:form>
+            <h:form id = "blog-form">
                 
                 <div class="mb-3">
                     <label class="form-label">Title</label>
@@ -48,14 +49,30 @@
                     <h:inputText styleClass="form-control" value="#{blogBean.entity.status}"/>
                 </div>
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{blogBean.create()}" value="Create"/>
-                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{blogBean.update()}" value="Update"/>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{categoryBean.clear()}" value="Clear Form"/>
+                            <h:commandButton styleClass="btn btn-primary btn-sm" action="#{blogBean.create()}" value="Create">
+                                
+                                
+                                <f:ajax execute="@this" render="blog-table blog-form">
+                        
+                        </f:ajax>     
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{blogBean.update()}" value="Update">
+                        
+                        <f:ajax execute="@this" render="blog-table blog-form"></f:ajax>     
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{categoryBean.clear()}" value="Clear Form">
+                        
+                        <f:ajax execute="@this" render="blog-table blog-form"></f:ajax>     
+
+                        </h:commandButton>
 
                 </div>
             
             <hr></hr>
-
+            </h:form>
+            <h:form id ="blog-table">
             <h:dataTable styleClass="table table-striped table-hover" value="#{blogBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -92,8 +109,16 @@
                 
                 <h:column>
                     <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm" rendered="#{blogBean.entity.id==0}" action="#{blogBean.delete(entity)}" value="Delete"/>
-                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{blogBean.entity.id==0}" action="#{blogBean.setEntity(entity)}" value="Update"/>
+                    <h:commandButton styleClass="btn btn-danger btn-sm" rendered="#{blogBean.entity.id==0}" action="#{blogBean.delete(entity)}" value="Delete">
+                        
+                        <f:ajax execute="@this" render="blog-table blog-form"></f:ajax>     
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{blogBean.entity.id==0}" action="#{blogBean.setEntity(entity)}" value="Update">
+                        
+                        <f:ajax execute="@this" render="blog-table blog-form"></f:ajax>     
+
+                        </h:commandButton>
                 </h:column>
                 <h:column>
                     <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/blogDetail" value="Detay görüntüle">
