@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template.xhtml">
+    <ui:define name='content'>
+        <div class="container">
+            
+            <div class="row">
+                <div class="col">
+                    <h:form>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Group Name</th>
+                                    <th>Created</th>
+                                    <th>Administration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat value="#{groupBean.list}" var="e">
+                                    <tr>
+                                        <td>#{e.id}</td>
+                                        <td> <h:commandLink action="#{groupBean.setEntity(e)}" value="#{e.gname}"/></td>
+                                        <td>#{e.created}</td>
+                                        <td>#{e.updated}</td>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>
+                    </h:form>
+                </div>
+                <div class="col">
+                    <h:form>
+                        <div class="mb-3">
+                            <label>Title</label>
+                            <h:inputText value="#{groupBean.entity.gname}" styleClass="form-control"/>
+                        </div>
+                        <div class="mb-3">
+                            <h:commandButton styleClass="btn btn-success" rendered="#{groupBean.entity.id==null}" action="#{groupBean.create}" value="Create" />
+                            <h:commandButton styleClass="btn btn-primary" rendered="#{groupBean.entity.id!=null}" action="#{groupBean.update}" value="Update" />
+                            <h:commandButton styleClass="btn btn-danger" rendered="#{groupBean.entity.id!=null}" action="#{groupBean.delete}" value="Delete" />
+                            <h:commandButton styleClass="btn btn-secondary" rendered="#{groupBean.entity.id!=null}" action="#{groupBean.clearForm}" value="Clear" />
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+   </ui:define>
+</ui:composition>
