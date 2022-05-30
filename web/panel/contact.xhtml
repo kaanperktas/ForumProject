@@ -7,12 +7,12 @@
                 template="/template.xhtml">
     <ui:define name='content'>
         <div class="container">
-            <h:form>
+            <h:form >
                 <h:commandButton styleClass="btn btn-secondary" action="/index" value="Home"/>
 
             </h:form>
             <hr></hr>
-            <h:form>
+            <h:form id="contact-form">
                 
                 <div class="mb-3">
                      <label class="form-label">User</label>
@@ -41,13 +41,23 @@
                 
                 
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{contactBean.create()}" value="Create"/>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{contactBean.update()}" value="Update"/>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{contactBean.clear()}" value="Clear Form"/>
-                </div>
-            
-            <hr></hr>
+                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{contactBean.create()}" value="Create">
+                        <f:ajax execute="contact-form" render="contact-table category-form"></f:ajax>     
+  
 
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{contactBean.update()}" value="Update">
+                        <f:ajax execute="contact-form" render="contact-table contact-form"></f:ajax>     
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{contactBean.clear()}" value="Clear Form">
+                        <f:ajax execute="@this" render="contact-table contact-form"></f:ajax>     
+
+                    </h:commandButton>
+                </div>
+            </h:form>
+            <hr></hr>
+            <h:form id="contact-table">
             <h:dataTable styleClass="table table-striped table-hover" value="#{contactBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -77,8 +87,17 @@
                 
                 <h:column>
                     <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{contactBean.delete(entity)}" value="Delete"/>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{contactBean.setEntity(entity)}" value="Update"/>
+                    
+                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{contactBean.delete(entity)}" value="Delete">
+                        <f:ajax execute="@this" render="contact-table contact-form"></f:ajax>     
+    
+
+                        </h:commandButton>
+                        
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{contactBean.setEntity(entity)}" value="Update">
+                        <f:ajax execute="@this" render="contact-table contact-form"></f:ajax>     
+
+                    </h:commandButton>
                 </h:column>
                 <h:column>
                     <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/contactDetail" value="Detay görüntüle">
