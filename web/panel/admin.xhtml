@@ -12,7 +12,7 @@
 
             </h:form>
             <hr></hr>
-            <h:form>
+            <h:form id = "admin-form">
                 
                 <div class="mb-3">
                     <label class="form-label">Mail</label>
@@ -34,13 +34,24 @@
                 </div>
                 
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{adminBean.create()}" value="Create"/>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{adminBean.update()}" value="Update"/>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{adminBean.clear()}" value="Clear Form"/>
+                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{adminBean.create()}" value="Create">
+                        <f:ajax execute="admin-form" render="admin-table admin-form"></f:ajax>     
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{adminBean.update()}" value="Update"> 
+                        <f:ajax execute="admin-form" render="admin-table admin-form"></f:ajax>     
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{adminBean.clear()}" value="Clear Form"> 
+                        <f:ajax execute="@this" render="admin-table admin-form"></f:ajax>     
+
+                    
+
+                        </h:commandButton>
                 </div>
             
             <hr></hr>
-
+            </h:form>
+            <h:form id = "admin-table">
             <h:dataTable styleClass="table table-striped table-hover" value="#{adminBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -60,8 +71,12 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{adminBean.delete(entity)}" value="Delete"/>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{adminBean.setEntity(entity)}" value="Update"/>
+                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{adminBean.delete(entity)}" value="Delete">
+                        <f:ajax execute="@this" render="admin-table admin-form"></f:ajax>     
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{adminBean.setEntity(entity)}" value="Update"> 
+                        <f:ajax execute="@this" render="admin-table admin-form"></f:ajax>     
+                        </h:commandButton>
                 </h:column>
                 <h:column>
                     <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/adminDetail" value="Detay görüntüle">

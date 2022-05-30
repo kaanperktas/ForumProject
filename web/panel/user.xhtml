@@ -14,7 +14,7 @@
 
             </h:form>
             <hr></hr>
-            <h:form>
+            <h:form id = "user-form">
                 
                 <div class="mb-3">
                     <label class="form-label">Mail</label>
@@ -34,13 +34,25 @@
                     <h:inputText styleClass="form-control" value="#{userBean.entity.lastName}"/>
                 </div>
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{userBean.create()}" value="Create"/>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{userBean.update()}" value="Update"/>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{userBean.clear()}" value="Clear Form"/>
+                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{userBean.create()}" value="Create"> 
+                        <f:ajax execute="user-form" render="user-table user-form"></f:ajax>     
+  
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{userBean.update()}" value="Update"> 
+                        <f:ajax execute="user-form" render="user-table user-form"></f:ajax>     
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{userBean.clear()}" value="Clear Form"> 
+                        <f:ajax execute="@this" render="user-table user-form"></f:ajax>     
+    
+
+                        </h:commandButton>
                 </div>
             
             <hr></hr>
-
+            </h:form>
+            <h:form id = "user-table">
             <h:dataTable styleClass="table table-striped table-hover" value="#{userBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -64,8 +76,15 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{userBean.delete(entity)}" value="Delete"/>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{userBean.setEntity(entity)}" value="Update"/>
+                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{userBean.delete(entity)}" value="Delete"> 
+                        <f:ajax execute="@this" render="user-table user-form"></f:ajax>     
+  
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{userBean.setEntity(entity)}" value="Update"> 
+                        <f:ajax execute="@this" render="user-table user-form"></f:ajax>     
+
+                        </h:commandButton>
                 </h:column>
                 <h:column>
                     <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/userDetail" value="Detay görüntüle">
