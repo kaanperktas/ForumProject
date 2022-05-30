@@ -47,7 +47,7 @@
                 </h:form>
                 <hr></hr>
                 <h:form id="category-table">
-                <h:dataTable styleClass="table table-striped table-hover" value="#{categoryBean.list}" var="entity">
+                <h:dataTable  styleClass="table table-striped table-hover" value="#{categoryBean.list}" var="entity" rendered="#{privilegeBean.getPrivileges(user.grup,'Category').icreate }" >
                     <h:column>
                         <f:facet name="header">ID</f:facet>
                             #{entity.id}
@@ -64,13 +64,13 @@
                         <f:facet name="header">STATUS</f:facet>
                             #{entity.status}
                     </h:column>
-                    <h:column>
+                    <h:column >
                         <f:facet name="header">ADMINISTRATION</f:facet>
-                        <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{categoryBean.delete(entity)}" value="Delete">
+                        <h:commandButton styleClass="btn btn-danger btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.grup,'Category').icreate }" action="#{categoryBean.delete(entity)}" value="Delete">
                             <f:ajax execute="@this" render="category-table category-form"></f:ajax>     
 
                         </h:commandButton>
-                        <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{categoryBean.setEntity(entity)}" value="Update">
+                        <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.grup,'Category').icreate }" action="#{categoryBean.setEntity(entity)}" value="Update">
                             <f:ajax execute="@this" render="category-table category-form"></f:ajax>     
 
                         </h:commandButton>

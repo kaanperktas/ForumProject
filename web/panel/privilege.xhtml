@@ -26,11 +26,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <ui:repeat value="#{privilegeBean.list}" var="e">
+                                <ui:repeat value="#{privilegesBean.list}" var="e">
                                     <tr>
                                         <td>#{e.id}</td>
                                         <td>#{e.sgroup.gname}</td>
-                                        <td> <h:commandLink action="#{privilegeBean.setEntity(e)}" value="#{e.name}"/></td>
+                                        <td> <h:commandLink action="#{privilegesBean.setEntity(e)}" value="#{e.name}"/></td>
                                         <td>#{e.icreate}</td>
                                         <td>#{e.iread}</td>
                                         <td>#{e.iupdate}</td>
@@ -50,43 +50,43 @@
                     <h:form>
                         <div class="mb-3">
                             <label>Group</label>
-                            <h:selectOneMenu styleClass="form-select" value="#{privilegeBean.entity.sgroup}" converter="groupConverter">
+                            <h:selectOneMenu styleClass="form-select" value="#{privilegesBean.entity.sgroup}" converter="groupConverter">
                                 <f:selectItems value="#{groupBean.list}" var="g" itemLabel="#{g.gname}" itemValue="#{g}"/>
                             </h:selectOneMenu>
                         </div>
                         <div class="mb-3">
                             <label>Name</label>
-                            <h:inputText value="#{privilegeBean.entity.name}" styleClass="form-control"/>
+                            <h:inputText value="#{privilegesBean.entity.name}" styleClass="form-control"/>
                         </div>
                         <div class="mb-3">
                             <label>Create</label>
-                            <h:selectBooleanCheckbox value="#{privilegeBean.entity.icreate}"/>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.icreate}"/>
                         </div>
                         <div class="mb-3">
                             <label>Read</label>
-                            <h:selectBooleanCheckbox value="#{privilegeBean.entity.iread}"/>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.iread}"/>
                         </div>
                         <div class="mb-3">
                             <label>Update</label>
-                            <h:selectBooleanCheckbox value="#{privilegeBean.entity.iupdate}"/>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.iupdate}"/>
                         </div>
                         <div class="mb-3">
                             <label>Delete</label>
-                            <h:selectBooleanCheckbox value="#{privilegeBean.entity.idelete}"/>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.idelete}"/>
                         </div>
                         <div class="mb-3">
                             <label>List</label>
-                            <h:selectBooleanCheckbox value="#{privilegeBean.entity.ilist}"/>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.ilist}"/>
                         </div>
                         <div class="mb-3">
                             <label>Show</label>
-                            <h:selectBooleanCheckbox value="#{privilegeBean.entity.irshow}"/>
+                            <h:selectBooleanCheckbox value="#{privilegesBean.entity.irshow}"/>
                         </div>
                         <div class="mb-3">
-                            <h:commandButton styleClass="btn btn-success" rendered="#{privilegeBean.entity.id==null}" action="#{privilegeBean.create}" value="Create" />
-                            <h:commandButton styleClass="btn btn-primary" rendered="#{privilegeBean.entity.id!=null}" action="#{privilegeBean.update}" value="Update" />
-                            <h:commandButton styleClass="btn btn-danger" rendered="#{privilegeBean.entity.id!=null}" action="#{privilegeBean.delete}" value="Delete" />
-                            <h:commandButton styleClass="btn btn-secondary" rendered="#{privilegeBean.entity.id!=null}" action="#{privilegeBean.clearForm}" value="Clear" />
+                            <h:commandButton styleClass="btn btn-success" rendered="#{privilegesBean.entity.id==null}" action="#{privilegeBean.create}" value="Create" />
+                            <h:commandButton styleClass="btn btn-primary" rendered="#{privilegesBean.entity.id!=null}" action="#{privilegeBean.update}" value="Update" />
+                            <h:commandButton styleClass="btn btn-danger" rendered="#{privilegesBean.entity.id!=null}" action="#{privilegeBean.delete}" value="Delete" />
+                            <h:commandButton styleClass="btn btn-secondary" rendered="#{privilegesBean.entity.id!=null}" action="#{privilegeBean.clearForm}" value="Clear" />
                         </div>
                     </h:form>
                 </div>

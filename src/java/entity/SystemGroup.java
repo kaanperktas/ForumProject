@@ -15,17 +15,13 @@ import java.util.Objects;
 public class SystemGroup implements Serializable{
     private Long id;
     private String gname;
-    private Date created;
-    private Date updated;
 
     public SystemGroup() {
     }
 
-    public SystemGroup(Long id, String gname, Date created, Date updated) {
+    public SystemGroup(Long id, String gname) {
         this.id = id;
         this.gname = gname;
-        this.created = created;
-        this.updated = updated;
     }
 
     public Long getId() {
@@ -44,21 +40,7 @@ public class SystemGroup implements Serializable{
         this.gname = gname;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
+    
 
     @Override
     public int hashCode() {

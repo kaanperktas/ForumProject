@@ -15,7 +15,7 @@ import java.util.List;
 
 @Named
 @SessionScoped
-public class PrivilagesBean implements Serializable{
+public class PrivilegesBean implements Serializable{
     private Privileges entity;
     private PrivilegeDao dao;
     private List<Privileges> list;
