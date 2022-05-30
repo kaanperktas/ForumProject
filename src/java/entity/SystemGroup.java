@@ -39,9 +39,6 @@ public class SystemGroup implements Serializable{
     public void setGname(String gname) {
         this.gname = gname;
     }
-
-    
-
     @Override
     public int hashCode() {
         int hash = 3;
