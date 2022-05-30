@@ -26,7 +26,7 @@ public class GroupDao extends DBConnection{
             Statement st =this.getConnection().createStatement();
             ResultSet rs=st.executeQuery("select * from systemgroup where id="+id);
             rs.next();
-            sg=new SystemGroup(rs.getLong("id"),rs.getString("gname"),rs.getDate("created"),rs.getDate("updated"));
+            sg=new SystemGroup(rs.getLong("id"),rs.getString("gname"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -39,7 +39,7 @@ public class GroupDao extends DBConnection{
             Statement st =this.getConnection().createStatement();
             ResultSet rs=st.executeQuery("select * from systemgroup");
             while (rs.next()) {                
-                list.add(new SystemGroup(rs.getLong("id"),rs.getString("gname"),rs.getDate("created"),rs.getDate("updated")));
+                list.add(new SystemGroup(rs.getLong("id"),rs.getString("gname")));
             }
             
         } catch (Exception e) {
