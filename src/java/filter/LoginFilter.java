@@ -26,7 +26,7 @@ public class LoginFilter implements Filter{
         
         User user = null;
         
-        user=session != null ? (User)session.getAttribute("validUser"):null ;
+        user=session != null ? (User)session.getAttribute("user"):null ;
         
         if(user == null){
             if(url.contains("logout") || url.contains("private")){

@@ -34,6 +34,12 @@
                     <h:inputText styleClass="form-control" value="#{userBean.entity.lastName}"/>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label">Group</label>
+                    <h:selectOneMenu value="#{userBean.entity.group}" converter="groupConverter">
+                        <f:selectItems value="#{groupBean.list}" var="c" itemValue="#{c}" itemLabel="#{c.gname}"/>
+                    </h:selectOneMenu>
+                </div>
+                <div class="mb-3">
                     <h:commandButton styleClass="btn btn-success btn-sm"  action="#{userBean.create()}" value="Create"> 
                         <f:ajax execute="user-form" render="user-table user-form"></f:ajax>     
   
@@ -73,6 +79,10 @@
                 <h:column>
                     <f:facet name="header">LASTNAME</f:facet>
                         #{entity.lastName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">GROUP</f:facet>
+                        #{entity.group.gname}
                 </h:column>
                 <h:column>
                     <f:facet name="header">ADMINISTRATION</f:facet>

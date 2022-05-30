@@ -4,12 +4,14 @@
  */
 package entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author CASPER
  */
-public class Privileges {
-    private Long id;
+public class Privileges implements Serializable{
+    private int id;
     private SystemGroup sgroup;
     private String name;
     private boolean icreate;
@@ -23,7 +25,7 @@ public class Privileges {
     }
 
 
-    public Privileges(Long id,SystemGroup sgroup, String name, boolean icreate, boolean iread, boolean iupdate, boolean idelete, boolean ilist, boolean irshow) {
+    public Privileges(int id,SystemGroup sgroup, String name, boolean icreate, boolean iread, boolean iupdate, boolean idelete, boolean ilist, boolean irshow) {
         this.id = id;
         this.sgroup=sgroup;
         this.name = name;
@@ -43,11 +45,11 @@ public class Privileges {
         this.sgroup = sgroup;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

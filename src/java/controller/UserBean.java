@@ -1,4 +1,3 @@
-
 package controller;
 
 import dao.UserDao;
@@ -23,32 +22,35 @@ import utils.Utils;
 @SessionScoped
 public class UserBean implements Serializable {
 
-    private int page=0;
-    private int pageSize= 5;
+    private int page = 0;
+    private int pageSize = 5;
     private int pageCount;
-   private User entity;
+    private User entity;
     private UserDao dao;
     private List<User> list;
     private Part file1;
-	private String message;
+    private String message;
 
-    public void next(){
-        if(this.page == this.getPageCount()){
-            this.page =1;
-        }else{
+    public void next() {
+        if (this.page == this.getPageCount()) {
+            this.page = 1;
+        } else {
             this.page++;
         }
-        System.out.println("+++++++++++++++++++++++"+page+"++++++++++++++++++");
-        
+        System.out.println("+++++++++++++++++++++++" + page + "++++++++++++++++++");
+
     }
-    public void previous(){System.out.println(page);
-        if(this.page == 1){
-            this.page =this.getPageCount();
-        }else{
+
+    public void previous() {
+        System.out.println(page);
+        if (this.page == 1) {
+            this.page = this.getPageCount();
+        } else {
             this.page--;
         }
-        System.out.println("+++++++++++++++++++++++"+page+"++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++" + page + "++++++++++++++++++");
     }
+
     public int getPage() {
         return page;
     }
@@ -66,7 +68,7 @@ public class UserBean implements Serializable {
     }
 
     public int getPageCount() {
-        this.pageCount= (int)Math.ceil(this.getDao().count()/(double)pageSize); //kaç sayfamız olduğunu bulacak
+        this.pageCount = (int) Math.ceil(this.getDao().count() / (double) pageSize); //kaç sayfamız olduğunu bulacak
         return pageCount;
     }
 
@@ -82,8 +84,6 @@ public class UserBean implements Serializable {
         this.file1 = file1;
     }
 
-  
-
     public String getMessage() {
         return message;
     }
@@ -91,63 +91,64 @@ public class UserBean implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
-    
+
     public String uploadFile() throws IOException {
-		boolean file1Success = false;
+        boolean file1Success = false;
 
-		if (file1 != null && file1.getSize() > 0) {
-			String fileName = Utils.getFileNameFromPart(file1);
+        if (file1 != null && file1.getSize() > 0) {
+            String fileName = Utils.getFileNameFromPart(file1);
 
-			
-			File savedFile = new File("/internet", fileName);
+            File savedFile = new File("/internet", fileName);
 
-			
+            try (InputStream input = file1.getInputStream()) {
+                Files.copy(input, savedFile.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-			try (InputStream input = file1.getInputStream()) {
-				Files.copy(input, savedFile.toPath());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+            file1Success = true;
+        }
 
-			file1Success = true;
-		}
+        if (file1Success) {
 
+            setMessage("Dosya başarıyla yüklendi");
+        } else {
 
-		if (file1Success) {
-			
-			setMessage("Dosya başarıyla yüklendi");
-		} else {
-			
-			setMessage("Dosya yüklenemedi. Lütfen başka bir dosya seçiniz!!");
-		}
+            setMessage("Dosya yüklenemedi. Lütfen başka bir dosya seçiniz!!");
+        }
 
-		
-		return null;
-	}
-    
+        return null;
+    }
+
     public UserBean() {
     }
-    public String getTitle(int id){
+
+    public String getTitle(int id) {
         User c = this.getDao().findById(id);
         return c.getMail();
     }
-    public void clear(){
+
+    public void clear() {
         entity = new User();
     }
-    public void create(){
+
+    public void create() {
         this.getDao().create(entity);
         entity = new User();
     }
-    public void delete(User c){
+
+    public void delete(User c) {
         this.getDao().delete(c);
         entity = new User();
     }
-    public void update(){
+
+    public void update() {
         this.getDao().update(entity);
         entity = new User();
     }
+
     public User getEntity() {
-        if(entity == null) {
+        if (entity == null) {
             entity = new User();
         }
         return entity;
@@ -158,7 +159,7 @@ public class UserBean implements Serializable {
     }
 
     public UserDao getDao() {
-        if(dao == null) {
+        if (dao == null) {
             dao = new UserDao();
         }
         return dao;
@@ -169,31 +170,30 @@ public class UserBean implements Serializable {
     }
 
     public List<User> getList() {
-        this.list = this.getDao().getList(page,pageSize);
+        this.list = this.getDao().getList(page, pageSize);
         return list;
     }
 
     public void setList(List<User> list) {
         this.list = list;
     }
-    public User findById(){
+
+    public User findById() {
         return this.getDao().findById(entity.getId());
-       
+
     }
-    public User findByMail(String mail){
+
+    public User findByMail(String mail) {
         return this.getDao().findByMail(mail);
     }
-    public User findByPassword(String password){
-        return this.getDao().findByPassword(password);
-    }
-    public boolean validatePassword(FacesContext context,UIComponent cmp,Object value)throws ValidatorException{
-        
+
+    public boolean validatePassword(FacesContext context, UIComponent cmp, Object value) throws ValidatorException {
+
         String v = (String) value;
-        
-        if(v.isEmpty()){
+
+        if (v.isEmpty()) {
             throw new ValidatorException(new FacesMessage("Password alanı boş olamaz"));
-        }
-        else if(v.length() <5){
+        } else if (v.length() < 5) {
             throw new ValidatorException(new FacesMessage("Password alanı 5 karakterden küçük olamaz"));
         }
         return true;

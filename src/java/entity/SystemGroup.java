@@ -13,24 +13,26 @@ import java.util.Objects;
  * @author CASPER
  */
 public class SystemGroup implements Serializable{
-    private Long id;
+    private int id;
     private String gname;
 
     public SystemGroup() {
     }
 
-    public SystemGroup(Long id, String gname) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public SystemGroup(int id, String gname) {
         this.id = id;
         this.gname = gname;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
 
     public String getGname() {
         return gname;
@@ -59,6 +61,11 @@ public class SystemGroup implements Serializable{
         }
         final SystemGroup other = (SystemGroup) obj;
         return Objects.equals(this.id, other.id);
+    }
+
+    @Override
+    public String toString() {
+        return "SystemGroup{" + "id=" + id + ", gname=" + gname + '}';
     }
     
 }

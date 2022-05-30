@@ -12,7 +12,7 @@ import jakarta.inject.Named;
 import java.util.List;
 
 
-@Named
+@Named(value = "groupBean")
 @SessionScoped
 public class GroupBean implements Serializable{
     private SystemGroup entity;

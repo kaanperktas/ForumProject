@@ -1,23 +1,34 @@
 
 package entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 
-public class User {
+public class User implements Serializable{
     
     private int id;
     private String mail;
     private String password;
     private String firstName;
     private String lastName;
-    
-    public User(int id, String mail, String password, String firstName, String lastName) {
+    private SystemGroup group;
+
+    public User(int id, String mail, String password, String firstName, String lastName, SystemGroup group) {
         this.id = id;
         this.mail = mail;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.group = group;
+    }
+
+    public SystemGroup getGroup() {
+        return group;
+    }
+
+    public void setGroup(SystemGroup group) {
+        this.group = group;
     }
 
     @Override

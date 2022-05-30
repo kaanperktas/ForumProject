@@ -21,7 +21,7 @@ public class GroupConverter implements Converter{
     private GroupDao gdao;
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-        Long id=Long.valueOf(string);
+        int id=Integer.valueOf(string);
         return this.getGdao().getById(id);
     }
 

@@ -18,7 +18,20 @@ import dao.DBConnection;
  */
 public class PrivilegeDao extends DBConnection{
 
-    private GroupDao gdao;
+    GroupDao gdao;
+
+ 
+    public GroupDao getGdao() {
+        if(gdao==null){
+            this.gdao=new GroupDao();
+        }
+        return gdao;
+    }
+
+    public void setGdao(GroupDao gdao) {
+        this.gdao = gdao;
+    }
+
     public PrivilegeDao() {
     }
     public Privileges getGroupPrivileges(SystemGroup sg, String module) {
@@ -26,14 +39,16 @@ public class PrivilegeDao extends DBConnection{
         try {
             Statement st =this.getConnection().createStatement();
             ResultSet rs=st.executeQuery("select * from privileges where sgroup="+sg.getId()+"and mname='"+module+"'");
-            rs.next();  
-            SystemGroup g=this.getGdao().getById(rs.getLong("sgroup"));
-            priv=new Privileges(rs.getLong("id"),g,rs.getString("mname"),rs.getBoolean("icreate"),rs.getBoolean("iread"),rs.getBoolean("iupdate"),rs.getBoolean("idelete"),rs.getBoolean("ilist"),rs.getBoolean("irshow"));
-            
+           
+            while(rs.next()){
+                SystemGroup g = this.getGdao().getById(rs.getInt("ugroup"));
+                priv=new Privileges(rs.getInt("id"),g,rs.getString("mname"),rs.getBoolean("icreate"),rs.getBoolean("iread"),rs.getBoolean("iupdate"),rs.getBoolean("idelete"),rs.getBoolean("ilist"),rs.getBoolean("irshow"));
+            }  
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        
         return priv;
     }
     public List<Privileges> readList(){
@@ -42,8 +57,8 @@ public class PrivilegeDao extends DBConnection{
             Statement st =this.getConnection().createStatement();
             ResultSet rs=st.executeQuery("select * from privileges");
             while (rs.next()) {     
-                SystemGroup g=this.getGdao().getById(rs.getLong("sgroup"));
-                list.add(new Privileges(rs.getLong("id"),g,rs.getString("mname"),rs.getBoolean("icreate"),rs.getBoolean("iread"),rs.getBoolean("iupdate"),rs.getBoolean("idelete"),rs.getBoolean("ilist"),rs.getBoolean("irshow")));
+                SystemGroup g=this.getGdao().getById(rs.getInt("sgroup"));
+                list.add(new Privileges(rs.getInt("id"),g,rs.getString("mname"),rs.getBoolean("icreate"),rs.getBoolean("iread"),rs.getBoolean("iupdate"),rs.getBoolean("idelete"),rs.getBoolean("ilist"),rs.getBoolean("irshow")));
             }
             
         } catch (Exception e) {
@@ -75,16 +90,7 @@ public class PrivilegeDao extends DBConnection{
             System.out.println(e.getMessage());
         }
     }
-    public GroupDao getGdao() {
-        if (this.gdao == null) {
-            this.gdao = new GroupDao();
-        }
-        return gdao;
-    }
-    
-    public void setGdao(GroupDao gdao) {
-        this.gdao = gdao;
-    }
+   
 
     
 }

@@ -29,7 +29,7 @@ public class LoginBean implements Serializable {
    
      public LoginBean() {
     }
-    public void login(){
+    public String login(){
         
 //        if(this.getBean().findByMail(user.getMail()) == null){
 //            System.out.println(this.getBean().findByMail(user.getMail()));
@@ -42,15 +42,18 @@ public class LoginBean implements Serializable {
         User u =this.getBean().findByMail(user.getMail());
         if(u != null){
             if(user.getPassword().equals(u.getPassword())){
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("validUser", user);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
+            return "/index?faces-redirect=true";
             
             }
             else{
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("username or password is wrong"));
+                return "/session/login?faces-redirect=true";
             }
         }
         else{
              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("kullanıcı bulunamadı"));
+             return "/session/login?faces-redirect=true";
         }
         
         

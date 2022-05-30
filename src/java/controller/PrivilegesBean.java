@@ -13,7 +13,7 @@ import jakarta.inject.Named;
 import java.util.List;
 
 
-@Named(value="privilegesBean")
+@Named(value="privilegeBean")
 @SessionScoped
 public class PrivilegesBean implements Serializable{
     private Privileges entity;

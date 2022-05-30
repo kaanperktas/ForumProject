@@ -30,16 +30,16 @@
                     <h:inputText styleClass="form-control" value="#{categoryBean.entity.status}"/>
                 </div>
                 <div class="mb-3">
-                    <h:form rendered="#{privilegeBean.getPrivileges(user.grup,'Category').icreate }">
-                        <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.grup,'Category').icreate }" action="#{categoryBean.create()}" value="Create">
+                    <h:form >
+                        <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Category').icreate }" action="#{categoryBean.create()}" value="Create">
                             <f:ajax execute="category-form" render="category-table category-form"></f:ajax>     
 
                         </h:commandButton>
-                        <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.grup,'Category').iupdate }" action="#{categoryBean.update()}" value="Update">
+                        <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Category').iupdate }" action="#{categoryBean.update()}" value="Update">
                             <f:ajax execute="category-form" render="category-table category-form"></f:ajax>     
 
                         </h:commandButton>
-                        <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.grup,'Category').idelete }" action="#{categoryBean.clear()}" value="Clear Form">
+                        <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Category').idelete }" action="#{categoryBean.clear()}" value="Clear Form">
                             <f:ajax execute="@this" render="category-table category-form"></f:ajax>     
 
                         </h:commandButton>
@@ -67,11 +67,11 @@
                     </h:column>
                     <h:column >
                         <f:facet name="header">ADMINISTRATION</f:facet>
-                        <h:commandButton styleClass="btn btn-danger btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.grup,'Category').icreate }" action="#{categoryBean.delete(entity)}" value="Delete">
+                        <h:commandButton styleClass="btn btn-danger btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.group,'Category').icreate }" action="#{categoryBean.delete(entity)}" value="Delete">
                             <f:ajax execute="@this" render="category-table category-form"></f:ajax>     
 
                         </h:commandButton>
-                        <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.grup,'Category').icreate }" action="#{categoryBean.setEntity(entity)}" value="Update">
+                        <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.group,'Category').icreate }" action="#{categoryBean.setEntity(entity)}" value="Update">
                             <f:ajax execute="@this" render="category-table category-form"></f:ajax>     
 
                         </h:commandButton>
