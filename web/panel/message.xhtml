@@ -7,13 +7,13 @@
                 template="/template.xhtml">
     <ui:define name='content'>
         <div class="container">
-            <h:form>
+            <h:form >
                 <h:commandButton styleClass="btn btn-secondary" action="/index" value="Home"/>
                 <h:commandButton action="#{messageBean.previous()}" value="previous" class="btn btn-danger m-1 text-lg-end"/>
                 <h:commandButton action="#{messageBean.next()}" value="next" class="btn btn-danger"/>
             </h:form>
             <hr></hr>
-            <h:form>
+            <h:form id="message-form">
 
                 <div class="mb-3">
                     <label class="form-label">Sender</label>
@@ -37,13 +37,22 @@
                     <h:inputText styleClass="form-control" value="#{messageBean.entity.status}"/>
                 </div>
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{messageBean.create()}" value="Create"/>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{messageBean.update()}" value="Update"/>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{messageBean.clear()}" value="Clear Form"/>
+                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{messageBean.create()}" value="Create">
+                        <f:ajax execute="message-form" render="message-table message-form"></f:ajax>     
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{messageBean.update()}" value="Update">
+                        <f:ajax execute="message-form" render="message-table message-form"></f:ajax>     
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{messageBean.clear()}" value="Clear Form">
+                        <f:ajax execute="@this" render="message-table message-form"></f:ajax>     
+
+                        </h:commandButton>
                 </div>
-
+            </h:form>
                 <hr></hr>
-
+                <h:form id="message-table">
                 <h:dataTable styleClass="table table-striped table-hover" value="#{messageBean.list}" var="entity">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
@@ -72,8 +81,14 @@
 
                     <h:column>
                         <f:facet name="header">ADMINISTRATION</f:facet>
-                        <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{messageBean.delete(entity)}" value="Delete"/>
-                        <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{messageBean.setEntity(entity)}" value="Update"/>
+                        <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{messageBean.delete(entity)}" value="Delete">
+                            <f:ajax execute="@this" render="message-table message-form"></f:ajax>     
+
+                        </h:commandButton>
+                        <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{messageBean.setEntity(entity)}" value="Update">
+                            <f:ajax execute="@this" render="message-table message-form"></f:ajax>     
+
+                        </h:commandButton>
                     </h:column>
                     <h:column>
                         <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/messageDetail" value="Detay görüntüle">

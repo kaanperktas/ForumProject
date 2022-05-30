@@ -12,7 +12,7 @@
 
             </h:form>
             <hr></hr>
-            <h:form>
+            <h:form id = "comment-form">
                
                 <div class="mb-3">
                      <label class="form-label">User</label>
@@ -46,13 +46,30 @@
                 </div>
                 
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{commentBean.create()}" value="Create"/>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{commentBean.update()}" value="Update"/>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{commentBean.clear()}" value="Clear Form"/>
+                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{commentBean.create()}" value="Create">
+                        <f:ajax execute="comment-form" render="comment-table comment-form"></f:ajax>     
+
+                            
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{commentBean.update()}" value="Update">
+                        <f:ajax execute="comment-form" render="comment-table comment-form"></f:ajax>     
+
+                         
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{commentBean.clear()}" value="Clear Form">
+                        <f:ajax execute="@this" render="comment-table comment-form"></f:ajax>     
+
+                           
+
+                        </h:commandButton>
+                       
                 </div>
             
             <hr></hr>
-
+            </h:form>
+            <h:form id ="comment-table">
             <h:dataTable styleClass="table table-striped table-hover" value="#{commentBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -88,8 +105,18 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{commentBean.delete(entity)}" value="Delete"/>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{commentBean.setEntity(entity)}" value="Update"/>
+                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{commentBean.delete(entity)}" value="Delete">
+                        <f:ajax execute="@this" render="comment-table comment-form"></f:ajax>     
+
+                           
+
+                        </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{commentBean.setEntity(entity)}" value="Update">
+                        <f:ajax execute="@this" render="comment-table comment-form"></f:ajax>     
+
+                             
+
+                        </h:commandButton>
                 </h:column>
                 <h:column>
                     <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/commentDetail" value="Detay görüntüle">
