@@ -30,23 +30,24 @@
                     <h:inputText styleClass="form-control" value="#{categoryBean.entity.status}"/>
                 </div>
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{categoryBean.create()}" value="Create">
-                        <f:ajax execute="category-form" render="category-table category-form"></f:ajax>     
+                    <h:form rendered="#{privilegeBean.getPrivileges(user.grup,'Category').icreate }">
+                        <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.grup,'Category').icreate }" action="#{categoryBean.create()}" value="Create">
+                            <f:ajax execute="category-form" render="category-table category-form"></f:ajax>     
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{categoryBean.update()}" value="Update">
-                        <f:ajax execute="category-form" render="category-table category-form"></f:ajax>     
+                        <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.grup,'Category').iupdate }" action="#{categoryBean.update()}" value="Update">
+                            <f:ajax execute="category-form" render="category-table category-form"></f:ajax>     
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{categoryBean.clear()}" value="Clear Form">
-                        <f:ajax execute="@this" render="category-table category-form"></f:ajax>     
+                        <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{categoryBean.entity.id==null and privilegeBean.getPrivileges(user.grup,'Category').idelete }" action="#{categoryBean.clear()}" value="Clear Form">
+                            <f:ajax execute="@this" render="category-table category-form"></f:ajax>     
 
                         </h:commandButton>
-                        
+                    </h:form>
                 </div>
-                </h:form>
-                <hr></hr>
-                <h:form id="category-table">
+            </h:form>
+            <hr></hr>
+            <h:form id="category-table">
                 <h:dataTable  styleClass="table table-striped table-hover" value="#{categoryBean.list}" var="entity" rendered="#{privilegeBean.getPrivileges(user.grup,'Category').icreate }" >
                     <h:column>
                         <f:facet name="header">ID</f:facet>
@@ -74,7 +75,7 @@
                             <f:ajax execute="@this" render="category-table category-form"></f:ajax>     
 
                         </h:commandButton>
-                        
+
                     </h:column>
                     <h:column>
                         <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/categoryDetail" value="Detay görüntüle">
@@ -95,7 +96,7 @@
                     </h:panelGrid>
                 </h:form>
             </p>
-            
+
         </div>
 
 

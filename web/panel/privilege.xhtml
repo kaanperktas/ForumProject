@@ -7,9 +7,7 @@
                 template="/template.xhtml">
     <ui:define name='content'>
         <div class="container">
-            
-            <div class="row">
-                <div class="col">
+
                     <h:form>
                         <table class="table table-striped table-hover">
                             <thead>
@@ -45,8 +43,7 @@
                             </tbody>
                         </table>
                     </h:form>
-                </div>
-                <div class="col">
+
                     <h:form>
                         <div class="mb-3">
                             <label>Group</label>
@@ -83,14 +80,13 @@
                             <h:selectBooleanCheckbox value="#{privilegesBean.entity.irshow}"/>
                         </div>
                         <div class="mb-3">
-                            <h:commandButton styleClass="btn btn-success" rendered="#{privilegesBean.entity.id==null}" action="#{privilegeBean.create}" value="Create" />
-                            <h:commandButton styleClass="btn btn-primary" rendered="#{privilegesBean.entity.id!=null}" action="#{privilegeBean.update}" value="Update" />
-                            <h:commandButton styleClass="btn btn-danger" rendered="#{privilegesBean.entity.id!=null}" action="#{privilegeBean.delete}" value="Delete" />
-                            <h:commandButton styleClass="btn btn-secondary" rendered="#{privilegesBean.entity.id!=null}" action="#{privilegeBean.clearForm}" value="Clear" />
+                            <h:commandButton styleClass="btn btn-success" rendered="#{privilegesBean.entity.id==null}" action="#{privilegesBean.create}" value="Create" />
+                            <h:commandButton styleClass="btn btn-primary" rendered="#{privilegesBean.entity.id!=null}" action="#{privilegesBean.update}" value="Update" />
+                            <h:commandButton styleClass="btn btn-danger" rendered="#{privilegesBean.entity.id!=null}" action="#{privilegesBean.delete}" value="Delete" />
+                            <h:commandButton styleClass="btn btn-secondary" rendered="#{privilegesBean.entity.id!=null}" action="#{privilegesBean.clearForm}" value="Clear" />
                         </div>
                     </h:form>
-                </div>
             </div>
-        </div>
+
    </ui:define>
 </ui:composition>
