@@ -12,7 +12,7 @@
 
             </h:form>
             <hr></hr>
-            <h:form>
+            <h:form id="about-form">
                 
                 <div class="mb-3">
                     <label class="form-label">Detail</label>
@@ -35,7 +35,8 @@
                 </div>
             
             <hr></hr>
-
+            </h:form>
+            <h:form id="about-table">
             <h:dataTable styleClass="table table-striped table-hover" value="#{aboutBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -56,6 +57,7 @@
                 <h:column>
                     <f:facet name="header">ADMINISTRATION</f:facet>
                     <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{aboutBean.delete(entity)}" value="Delete"/>
+                        
                     <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{aboutBean.setEntity(entity)}" value="Update"/>
                 </h:column>
                 <h:column>

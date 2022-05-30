@@ -31,12 +31,15 @@
                 </div>
                 <div class="mb-3">
                     <h:commandButton styleClass="btn btn-success btn-sm"  action="#{categoryBean.create()}" value="Create"/>
+                        
                     <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{categoryBean.update()}" value="Update"/>
+                        
                     <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{categoryBean.clear()}" value="Clear Form"/>
+                        
                 </div>
 
                 <hr></hr>
-
+            
                 <h:dataTable styleClass="table table-striped table-hover" value="#{categoryBean.list}" var="entity">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
@@ -56,8 +59,11 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">ADMINISTRATION</f:facet>
-                        <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{categoryBean.delete(entity)}" value="Delete"/>
+                        <h:commandButton action="#{categoryBean.delete(entity)}" styleClass="btn btn-danger btn-sm"  value="Delete"/>
+                            
                         <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{categoryBean.setEntity(entity)}" value="Update"/>
+                            
+
                     </h:column>
                     <h:column>
                         <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/categoryDetail" value="Detay görüntüle">
@@ -67,17 +73,39 @@
                 </h:dataTable>
             </h:form>
             <h2>Dosya Yükleyiniz</h2>
-		<p>
-			<h:outputText style="color:red ; font-size:10pt" value="#{categoryBean.message}"
-				rendered="#{!empty categoryBean.message}"></h:outputText>
-			<h:form  enctype="multipart/form-data">
-				<h:panelGrid>
-					<h:inputFile value="#{categoryBean.file1}" styleClass="btn btn-danger"></h:inputFile>
-					<h:commandButton styleClass="btn btn-warning" action="#{categoryBean.uploadFile()}"
-						value="Upload"></h:commandButton>
-				</h:panelGrid>
-			</h:form>
-		</p>
+            <p>
+                <h:outputText style="color:red ; font-size:10pt" value="#{categoryBean.message}"
+                              rendered="#{!empty categoryBean.message}"></h:outputText>
+                <h:form  enctype="multipart/form-data">
+                    <h:panelGrid>
+                        <h:inputFile value="#{categoryBean.file1}" styleClass="btn btn-danger"></h:inputFile>
+                        <h:commandButton styleClass="btn btn-warning" action="#{categoryBean.uploadFile()}"
+                                         value="Upload"></h:commandButton>
+                    </h:panelGrid>
+                </h:form>
+            </p>
+            <h:form>
+            <div class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <h:panelGroup layout="block" class="modal-content" id="delete-modal">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Modal body text goes here.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <h:commandButton action="#{categoryBean.delete(entity)}" value="Delete" styleClass="btn btn-danger btn-sm"></h:commandButton>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                        </div>
+                        </h:panelGroup>
+                    </div>
+                
+               
+            </div>
+                </h:form>
         </div>
 
 
