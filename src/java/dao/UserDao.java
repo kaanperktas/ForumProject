@@ -35,10 +35,9 @@ public class UserDao extends DBConnection {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 SystemGroup g = this.getGdao().getById(rs.getInt("ugroup"));
-
                 c = new User(rs.getInt("id"), rs.getString("mail"), rs.getString("password"), rs.getString("first_name"), rs.getString("last_name"), g);
             }
-
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -56,7 +55,6 @@ public class UserDao extends DBConnection {
                 SystemGroup g = this.getGdao().getById(rs.getInt("ugroup"));
                 c = new User(rs.getInt("id"), rs.getString("mail"), rs.getString("password"), rs.getString("first_name"), rs.getString("last_name"), g);
             }
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

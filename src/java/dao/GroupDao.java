@@ -33,6 +33,7 @@ public class GroupDao extends DBConnection {
                 
                 sg = new SystemGroup(rs.getInt("id"), rs.getString("gname"));
             }
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -13,7 +13,7 @@
                 <h:commandButton action="#{messageBean.next()}" value="next" class="btn btn-danger"/>
             </h:form>
             <hr></hr>
-            <h:form id="message-form">
+            <h:form id="message-form" rendered="#{privilegeBean.getPrivileges(user.group,'Message').icreate }">
 
                 <div class="mb-3">
                     <label class="form-label">Sender</label>
@@ -37,15 +37,15 @@
                     <h:inputText styleClass="form-control" value="#{messageBean.entity.status}"/>
                 </div>
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{messageBean.create()}" value="Create">
+                    <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Message').icreate }"   action="#{messageBean.create()}" value="Create">
                         <f:ajax execute="message-form" render="message-table message-form"></f:ajax>     
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{messageBean.update()}" value="Update">
+                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Message').iupdate }"  action="#{messageBean.update()}" value="Update">
                         <f:ajax execute="message-form" render="message-table message-form"></f:ajax>     
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{messageBean.clear()}" value="Clear Form">
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Message').idelete }"  action="#{messageBean.clear()}" value="Clear Form">
                         <f:ajax execute="@this" render="message-table message-form"></f:ajax>     
 
                         </h:commandButton>

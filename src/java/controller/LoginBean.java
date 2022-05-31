@@ -1,6 +1,6 @@
-
 package controller;
 
+import dao.UserDao;
 import entity.User;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
@@ -12,55 +12,45 @@ import java.io.Serializable;
 @SessionScoped
 public class LoginBean implements Serializable {
 
-    
     private User user;
-    private UserBean bean; 
+    private UserDao dao;
 
-    public UserBean getBean() {
-         if(this.bean == null){
-            bean = new UserBean();
+    public UserDao getDao() {
+        if(this.dao == null){
+            this.dao = new UserDao();
         }
-        return bean;
+        return dao;
     }
 
-    public void setBean(UserBean bean) {
-        this.bean = bean;
+    public void setDao(UserDao dao) {
+        this.dao = dao;
     }
-   
-     public LoginBean() {
+
+    
+
+    public LoginBean() {
     }
-    public String login(){
-        
-//        if(this.getBean().findByMail(user.getMail()) == null){
-//            System.out.println(this.getBean().findByMail(user.getMail()));
-//        
-//        }
-//        
-//        else{
-//            System.out.println("hataaaaaaaaaaaaaaaaaaa");
-//        }
-        User u =this.getBean().findByMail(user.getMail());
-        if(u != null){
-            if(user.getPassword().equals(u.getPassword())){
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
-            return "/index?faces-redirect=true";
-            
-            }
-            else{
+
+    public String login() {
+        User u = this.getDao().findByMail(user.getMail());
+        if (u != null) {
+            if (user.getPassword().equals(u.getPassword())) {
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", u);
+                return "/index?faces-redirect=true";
+
+            } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("username or password is wrong"));
                 return "/session/login?faces-redirect=true";
             }
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("kullanıcı bulunamadı"));
+            return "/session/login?faces-redirect=true";
         }
-        else{
-             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("kullanıcı bulunamadı"));
-             return "/session/login?faces-redirect=true";
-        }
-        
-        
+
     }
-    
+
     public User getUser() {
-        if(this.user == null){
+        if (this.user == null) {
             user = new User();
         }
         return user;
@@ -69,6 +59,5 @@ public class LoginBean implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-   
-    
+
 }

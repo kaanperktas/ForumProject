@@ -12,7 +12,7 @@
 
             </h:form>
             <hr></hr>
-            <h:form id = "comment-form">
+            <h:form id = "comment-form" rendered="#{privilegeBean.getPrivileges(user.group,'Comment').icreate }">
                
                 <div class="mb-3">
                      <label class="form-label">User</label>
@@ -46,19 +46,19 @@
                 </div>
                 
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{commentBean.create()}" value="Create">
+                    <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Comment').icreate }"  action="#{commentBean.create()}" value="Create">
                         <f:ajax execute="comment-form" render="comment-table comment-form"></f:ajax>     
 
                             
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{commentBean.update()}" value="Update">
+                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Comment').iupdate }"  action="#{commentBean.update()}" value="Update">
                         <f:ajax execute="comment-form" render="comment-table comment-form"></f:ajax>     
 
                          
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{commentBean.clear()}" value="Clear Form">
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Comment').idelete }" action="#{commentBean.clear()}" value="Clear Form">
                         <f:ajax execute="@this" render="comment-table comment-form"></f:ajax>     
 
                            

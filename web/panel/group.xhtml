@@ -10,7 +10,7 @@
             
             <div class="row">
                 <div class="col">
-                    <h:form>
+                    <h:form rendered="#{privilegeBean.getPrivileges(user.group,'Group').icreate }">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -40,9 +40,9 @@
                             <h:inputText value="#{groupBean.entity.gname}" styleClass="form-control"/>
                         </div>
                         <div class="mb-3">
-                            <h:commandButton styleClass="btn btn-success" rendered="#{groupBean.entity.id==null}" action="#{groupBean.create}" value="Create" />
-                            <h:commandButton styleClass="btn btn-primary" rendered="#{groupBean.entity.id!=null}" action="#{groupBean.update}" value="Update" />
-                            <h:commandButton styleClass="btn btn-danger" rendered="#{groupBean.entity.id!=null}" action="#{groupBean.delete}" value="Delete" />
+                            <h:commandButton styleClass="btn btn-success" rendered="#{privilegeBean.getPrivileges(user.group,'Group').icreate }"  action="#{groupBean.create}" value="Create" />
+                            <h:commandButton styleClass="btn btn-primary" rendered="#{privilegeBean.getPrivileges(user.group,'Group').iupdate }"  action="#{groupBean.update}" value="Update" />
+                            <h:commandButton styleClass="btn btn-danger" rendered="#{privilegeBean.getPrivileges(user.group,'Group').idelete }"  action="#{groupBean.delete}" value="Delete" />
                             <h:commandButton styleClass="btn btn-secondary" rendered="#{groupBean.entity.id!=null}" action="#{groupBean.clearForm}" value="Clear" />
                         </div>
                     </h:form>

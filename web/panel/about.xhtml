@@ -13,7 +13,7 @@
             </h:form>
             <hr></hr>
 
-            <h:form id="about-form">
+            <h:form id="about-form" rendered="#{privilegeBean.getPrivileges(user.group,'About').icreate }">
 
                 
                 <div class="mb-3">
@@ -31,13 +31,13 @@
                     <h:inputText styleClass="form-control" value="#{aboutBean.entity.status}"/>
                 </div>
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{aboutBean.create()}" value="Create"> 
+                    <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'About').icreate }" action="#{aboutBean.create()}" value="Create"> 
                         <f:ajax execute="about-form" render="about-table about-form"></f:ajax>     
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{aboutBean.update()}" value="Update">
+                    <h:commandButton styleClass="btn btn-primary btn-sm"  rendered="#{privilegeBean.getPrivileges(user.group,'About').iupdate }" action="#{aboutBean.update()}" value="Update">
                           <f:ajax execute="about-form" render="about-table about-form"></f:ajax>     
                                    </h:commandButton>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{aboutBean.clear()}" value="Clear Form">
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'About').idelete }" action="#{aboutBean.clear()}" value="Clear Form">
                           <f:ajax execute="@this" render="about-table about-form"></f:ajax>     
                           
                     </h:commandButton>

@@ -12,7 +12,7 @@
 
             </h:form>
             <hr></hr>
-            <h:form id="writer-form">
+            <h:form id="writer-form" rendered="#{privilegeBean.getPrivileges(user.group,'Writer').icreate }">
 
                 <div class="mb-3">
                     <label class="form-label">Name</label>
@@ -44,13 +44,13 @@
                     <h:inputText styleClass="form-control" value="#{writerBean.entity.status}"/>
                 </div>
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{writerBean.create()}" value="Create">
+                    <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Writer').icreate }"   action="#{writerBean.create()}" value="Create">
                         <f:ajax execute="writer-form" render="writer-form writer-table" ></f:ajax>     
                     </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{writerBean.update()}" value="Update">
+                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Writer').iupdate }"  action="#{writerBean.update()}" value="Update">
                         <f:ajax execute="writer-form" render="writer-form writer-table" ></f:ajax>     
                     </h:commandButton>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{writerBean.clear()}" value="Clear Form">
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Writer').iupdate }"  action="#{writerBean.clear()}" value="Clear Form">
                         <f:ajax execute="@this" render="writer-form" ></f:ajax>     
                     </h:commandButton>
                 </div>

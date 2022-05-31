@@ -12,84 +12,84 @@
 
             </h:form>
             <hr></hr>
-            <h:form id = "blog-rating-form">
-                
+            <h:form id = "blog-rating-form" rendered="#{privilegeBean.getPrivileges(user.group,'BlogRating').icreate }">
+
                 <div class="mb-3">
                     <label class="form-label">Total Score</label>
                     <h:inputText  styleClass="form-control" value="#{blogRatingBean.entity.total_score}"/>
-              
+
                 </div>
                 <div class="mb-3 mt-5">
-                     <label class="form-label">Blog</label>
-                     <h:selectOneMenu styleClass="form-select" value="#{blogRatingBean.entity.blog}" converter="blogConverter">
+                    <label class="form-label">Blog</label>
+                    <h:selectOneMenu styleClass="form-select" value="#{blogRatingBean.entity.blog}" converter="blogConverter">
                         <f:selectItems value="#{blogBean.list}" var="c" itemValue="#{c}" itemLabel="#{c.title}"/>
                     </h:selectOneMenu>
                 </div>
-                
+
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{blogRatingBean.create()}" value="Create">
-                           
+                    <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'BlogRating').icreate }"  action="#{blogRatingBean.create()}" value="Create">
 
-                       <f:ajax execute="blog-rating-form" render="blog-rating-table blog-rating-form"></f:ajax>     
 
-                        </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{blogRatingBean.update()}" value="Update">
                         <f:ajax execute="blog-rating-form" render="blog-rating-table blog-rating-form"></f:ajax>     
 
-                            
+                    </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'BlogRating').iupdate }"  action="#{blogRatingBean.update()}" value="Update">
+                        <f:ajax execute="blog-rating-form" render="blog-rating-table blog-rating-form"></f:ajax>     
 
-                        </h:commandButton>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{blogRatingBean.clear()}" value="Clear Form">
+
+
+                    </h:commandButton>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'BlogRating').idelete }"  action="#{blogRatingBean.clear()}" value="Clear Form">
                         <f:ajax execute="@this" render="blog-rating-table blog-rating-form"></f:ajax>     
 
-                             
 
-                        </h:commandButton>
+
+                    </h:commandButton>
                 </div>
-            
-            <hr></hr>
+
+                <hr></hr>
             </h:form>
             <h:form id ="blog-rating-table">
-            <h:dataTable styleClass="table table-striped table-hover" value="#{blogRatingBean.list}" var="entity">
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                        #{entity.id}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">BLOG</f:facet>
-                        #{entity.blog.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">TOTAL SCORE</f:facet>
-                        #{entity.total_score}
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{blogRatingBean.delete(entity)}" value="Delete">
-                        <f:ajax execute="@this" render="blog-rating-table blog-rating-form"></f:ajax>     
+                <h:dataTable styleClass="table table-striped table-hover" value="#{blogRatingBean.list}" var="entity">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{entity.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">BLOG</f:facet>
+                            #{entity.blog.title}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">TOTAL SCORE</f:facet>
+                            #{entity.total_score}
+                    </h:column>
 
-                             
+                    <h:column>
+                        <f:facet name="header">ADMINISTRATION</f:facet>
+                        <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{blogRatingBean.delete(entity)}" value="Delete">
+                            <f:ajax execute="@this" render="blog-rating-table blog-rating-form"></f:ajax>     
 
-                        </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{blogRatingBean.setEntity(entity)}" value="Update">
-                        <f:ajax execute="@this" render="blog-rating-table blog-rating-form"></f:ajax>     
 
-                        
 
                         </h:commandButton>
-                </h:column>
-                <h:column>
-                    <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/blogRatingDetail" value="Detay görüntüle">
-                    
-                        <f:param  name = "id" value = "#{entity.id}" />
-                    
-                    </h:link > 
-                </h:column>
-            </h:dataTable>
-             </h:form>
+                        <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{blogRatingBean.setEntity(entity)}" value="Update">
+                            <f:ajax execute="@this" render="blog-rating-table blog-rating-form"></f:ajax>     
+
+
+
+                        </h:commandButton>
+                    </h:column>
+                    <h:column>
+                        <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/blogRatingDetail" value="Detay görüntüle">
+
+                            <f:param  name = "id" value = "#{entity.id}" />
+
+                        </h:link > 
+                    </h:column>
+                </h:dataTable>
+            </h:form>
         </div>
-       
 
-</ui:define>
+
+    </ui:define>
 </ui:composition>

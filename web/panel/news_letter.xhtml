@@ -14,7 +14,7 @@
             </h:form>
             <hr></hr>
 
-            <h:form id="newsletter-form">
+            <h:form id="newsletter-form" rendered="#{privilegeBean.getPrivileges(user.group,'Newsletter').icreate }">
 
 
                 <div class="mb-3">
@@ -29,13 +29,13 @@
 
 
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{newsLetterBean.create()}" value="Create">
+                    <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Newsletter').icreate }"  action="#{newsLetterBean.create()}" value="Create">
                         <f:ajax execute="newsletter-form" render="newsletter-form newsletter-table" ></f:ajax>     
                     </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{newsLetterBean.update()}" value="Update">
+                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Newsletter').iupdate }"   action="#{newsLetterBean.update()}" value="Update">
                         <f:ajax execute="newsletter-form" render="newsletter-form newsletter-table"></f:ajax>     
                     </h:commandButton>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{newsLetterBean.clear()}" value="Clear Form">
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Newsletter').idelete }"  action="#{newsLetterBean.clear()}" value="Clear Form">
                         <f:ajax execute="@this" render="newsletter-form"></f:ajax>     
                     </h:commandButton>
                 </div>

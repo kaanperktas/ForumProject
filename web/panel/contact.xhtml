@@ -12,7 +12,7 @@
 
             </h:form>
             <hr></hr>
-            <h:form id="contact-form">
+            <h:form id="contact-form" rendered="#{privilegeBean.getPrivileges(user.group,'Contact').icreate }"> 
                 
                 <div class="mb-3">
                      <label class="form-label">User</label>
@@ -41,16 +41,16 @@
                 
                 
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{contactBean.create()}" value="Create">
+                    <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Contact').icreate }" action="#{contactBean.create()}" value="Create">
                         <f:ajax execute="contact-form" render="contact-table category-form"></f:ajax>     
   
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{contactBean.update()}" value="Update">
+                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Contact').iupdate }" action="#{contactBean.update()}" value="Update">
                         <f:ajax execute="contact-form" render="contact-table contact-form"></f:ajax>     
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{contactBean.clear()}" value="Clear Form">
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Contact').idelete }" action="#{contactBean.clear()}" value="Clear Form">
                         <f:ajax execute="@this" render="contact-table contact-form"></f:ajax>     
 
                     </h:commandButton>

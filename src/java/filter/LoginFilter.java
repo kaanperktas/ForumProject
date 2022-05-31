@@ -18,6 +18,8 @@ public class LoginFilter implements Filter{
    
     @Override
     public void doFilter(ServletRequest sr, ServletResponse sr1, FilterChain fc) throws IOException, ServletException {
+
+//        
         HttpServletRequest request =(HttpServletRequest) sr;
         HttpServletResponse response =(HttpServletResponse) sr1;
         
@@ -26,28 +28,15 @@ public class LoginFilter implements Filter{
         
         User user = null;
         
-        user=session != null ? (User)session.getAttribute("user"):null ;
+        if (session!=null) {
+            user=(User)session.getAttribute("user");
+        }
         
-        if(user == null){
-            if(url.contains("logout") || url.contains("private")){
-                 response.sendRedirect(request.getContextPath()+"/login.xhtml");
-            }
-            else{
-                fc.doFilter(sr, sr1); 
-            }
+        if (user==null && url.contains("panel")) {
+            response.sendRedirect(request.getContextPath()+"/index.xhtml");
         }
         else{
-            if(url.contains("register")){
-                response.sendRedirect(request.getContextPath()+"/index.xhtml");
-            }
-            
-            else if(url.contains("index")){
-               session.invalidate();
-               response.sendRedirect(request.getContextPath()+"/index.xhtml");
-            }
-            else{
-                 fc.doFilter(sr, sr1); 
-            }
+            fc.doFilter(sr, sr1);
         }
     }
 }

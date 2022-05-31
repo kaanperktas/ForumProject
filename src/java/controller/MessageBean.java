@@ -30,7 +30,6 @@ public class MessageBean implements Serializable{
         }else{
             this.page++;
         }
-        System.out.println("+++++++++++++++++++++++"+page+"++++++++++++++++++");
         
     }
     public void previous(){System.out.println(page);
@@ -39,7 +38,6 @@ public class MessageBean implements Serializable{
         }else{
             this.page--;
         }
-        System.out.println("+++++++++++++++++++++++"+page+"++++++++++++++++++");
     }
     public int getPage() {
         return page;

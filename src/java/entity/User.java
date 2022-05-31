@@ -111,6 +111,11 @@ public class User implements Serializable{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", mail=" + mail + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", group=" + group + '}';
+    }
     
     
     

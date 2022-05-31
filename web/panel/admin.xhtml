@@ -12,7 +12,7 @@
 
             </h:form>
             <hr></hr>
-            <h:form id = "admin-form">
+            <h:form id = "admin-form" rendered="#{privilegeBean.getPrivileges(user.group,'Admin').icreate }">
                 
                 <div class="mb-3">
                     <label class="form-label">Mail</label>
@@ -34,14 +34,14 @@
                 </div>
                 
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{adminBean.create()}" value="Create">
+                    <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Admin').icreate }"  action="#{adminBean.create()}" value="Create">
                         <f:ajax execute="admin-form" render="admin-table admin-form"></f:ajax>     
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{adminBean.update()}" value="Update"> 
+                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Admin').iupdate }"  action="#{adminBean.update()}" value="Update"> 
                         <f:ajax execute="admin-form" render="admin-table admin-form"></f:ajax>     
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{adminBean.clear()}" value="Clear Form"> 
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Admin').idelete }" action="#{adminBean.clear()}" value="Clear Form"> 
                         <f:ajax execute="@this" render="admin-table admin-form"></f:ajax>     
 
                     

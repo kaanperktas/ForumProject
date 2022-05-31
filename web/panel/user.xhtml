@@ -14,7 +14,7 @@
 
             </h:form>
             <hr></hr>
-            <h:form id = "user-form">
+            <h:form id = "user-form" rendered="#{privilegeBean.getPrivileges(user.group,'User').icreate }">
                 
                 <div class="mb-3">
                     <label class="form-label">Mail</label>
@@ -40,16 +40,16 @@
                     </h:selectOneMenu>
                 </div>
                 <div class="mb-3">
-                    <h:commandButton styleClass="btn btn-success btn-sm"  action="#{userBean.create()}" value="Create"> 
+                    <h:commandButton styleClass="btn btn-success btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'User').icreate }"  action="#{userBean.create()}" value="Create"> 
                         <f:ajax execute="user-form" render="user-table user-form"></f:ajax>     
   
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm"  action="#{userBean.update()}" value="Update"> 
+                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'User').iupdate }"  action="#{userBean.update()}" value="Update"> 
                         <f:ajax execute="user-form" render="user-table user-form"></f:ajax>     
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{userBean.clear()}" value="Clear Form"> 
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'User').idelete }"  action="#{userBean.clear()}" value="Clear Form"> 
                         <f:ajax execute="@this" render="user-table user-form"></f:ajax>     
     
 

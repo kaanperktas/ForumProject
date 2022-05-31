@@ -10,6 +10,7 @@ import entity.Privileges;
 import entity.SystemGroup;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -27,7 +28,8 @@ public class PrivilegesBean implements Serializable{
         return entity;
     }
 
-    public Privileges getPrivileges(SystemGroup sg,String module){
+    public Privileges getPrivileges(SystemGroup sg,String module) throws SQLException{
+        System.out.println("+++++++++++");
         return this.getDao().getGroupPrivileges(sg,module);
     }
     public void clearForm(){
@@ -50,12 +52,12 @@ public class PrivilegesBean implements Serializable{
     }
 
     public PrivilegeDao getDao() {
-        if (this.dao==null) {
+        if (dao==null) {
             this.dao=new PrivilegeDao();
         }
         return dao;
     }
-
+    
     public void setDao(PrivilegeDao dao) {
         this.dao = dao;
     }

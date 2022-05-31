@@ -20,7 +20,11 @@
             <h:outputLabel value="LAST NAME : "></h:outputLabel> <h:outputText  value="#{userBean.findById().lastName}" ></h:outputText>
             <h:outputLabel value="PASSWORD : "></h:outputLabel> <h:outputText  value="#{userBean.findById().password}" ></h:outputText>
             <h:outputLabel value="MAIL : "></h:outputLabel> <h:outputText  value="#{userBean.findById().mail}" ></h:outputText>
+            <h:outputLabel value="GROUP : "></h:outputLabel> <h:outputText  value="#{userBean.findById().group.gname}" ></h:outputText>
+        
         </h:panelGrid>
+        
+        
         <h:commandButton styleClass="btn btn-danger m-3" action="/panel/writer" value="önceki sayfa"/> 
     </h:form>
         

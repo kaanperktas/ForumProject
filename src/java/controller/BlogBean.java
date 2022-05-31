@@ -46,7 +46,6 @@ public class BlogBean implements Serializable {
         } else {
             this.page++;
         }
-        System.out.println("+++++++++++++++++++++++" + page + "++++++++++++++++++");
 
     }
 
@@ -57,7 +56,6 @@ public class BlogBean implements Serializable {
         } else {
             this.page--;
         }
-        System.out.println("+++++++++++++++++++++++" + page + "++++++++++++++++++");
     }
 
     public int getPage() {

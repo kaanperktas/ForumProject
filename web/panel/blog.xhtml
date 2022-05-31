@@ -11,11 +11,11 @@
                 <h:commandButton styleClass="btn btn-secondary" action="/index" value="Home"/>
                 <h:commandButton action="#{blogBean.previous()}" value="previous" class="btn btn-danger m-1 text-lg-end"/>
                 <h:commandButton action="#{blogBean.next()}" value="next" class="btn btn-danger"/>
-                
+
             </h:form>
             <hr></hr>
-            <h:form id = "blog-form">
-                
+            <h:form id = "blog-form" rendered="#{privilegeBean.getPrivileges(user.group,'Blog').icreate }">
+
                 <div class="mb-3">
                     <label class="form-label">Title</label>
                     <h:inputText id ="title" styleClass="form-control" validator="#{blogBean.validateTitle}" value="#{blogBean.entity.title}"/>
@@ -24,7 +24,7 @@
                 <div class="mb-3">
                     <label class="form-label">Content</label>
                     <h:inputText id="con" styleClass="form-control" value="#{blogBean.entity.content}" required="true" requiredMessage="Bu alan zorunludur." >
-                    
+
                     </h:inputText>
                     <h:message for="con" style="color:red ; font-size:10pt"/> <br/>
                 </div>
@@ -49,99 +49,99 @@
                     <h:inputText styleClass="form-control" value="#{blogBean.entity.status}"/>
                 </div>
                 <div class="mb-3">
-                            <h:commandButton styleClass="btn btn-primary btn-sm" action="#{blogBean.create()}" value="Create">
-                                
-                                
-                                <f:ajax execute="@this" render="blog-table blog-form">
-                        
+                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Blog').icreate }" action="#{blogBean.create()}" value="Create">
+
+
+                        <f:ajax execute="@this" render="blog-table blog-form">
+
                         </f:ajax>     
 
-                        </h:commandButton>
-                    <h:commandButton styleClass="btn btn-danger btn-sm"  action="#{blogBean.update()}" value="Update">
-                        
+                    </h:commandButton>
+                    <h:commandButton styleClass="btn btn-danger btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Blog').iupdate }" action="#{blogBean.update()}" value="Update">
+
                         <f:ajax execute="@this" render="blog-table blog-form"></f:ajax>     
 
-                        </h:commandButton>
-                    <h:commandButton styleClass="btn btn-secondary btn-sm" action="#{categoryBean.clear()}" value="Clear Form">
-                        
+                    </h:commandButton>
+                    <h:commandButton styleClass="btn btn-secondary btn-sm" rendered="#{privilegeBean.getPrivileges(user.group,'Blog').idelete }" action="#{categoryBean.clear()}" value="Clear Form">
+
                         <f:ajax execute="@this" render="blog-table blog-form"></f:ajax>     
 
-                        </h:commandButton>
+                    </h:commandButton>
 
                 </div>
-            
-            <hr></hr>
+
+                <hr></hr>
             </h:form>
             <h:form id ="blog-table">
-            <h:dataTable styleClass="table table-striped table-hover" value="#{blogBean.list}" var="entity">
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                    #{entity.id}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">TITLE</f:facet>
-                    #{entity.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">CONTENT</f:facet>
-                    #{entity.content}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">IMAGE</f:facet>
-                    #{entity.image}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">CREATE DATE</f:facet>
-                        #{entity.create_date}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">CATEGORY</f:facet>
-                    #{entity.category.name}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">STATUS</f:facet>
-                    #{entity.status}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">WRITER</f:facet>
-                    #{entity.writer.name}
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">ADMINISTRATION</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm" rendered="#{blogBean.entity.id==0}" action="#{blogBean.delete(entity)}" value="Delete">
-                        
-                        <f:ajax execute="@this" render="blog-table blog-form"></f:ajax>     
+                <h:dataTable styleClass="table table-striped table-hover" value="#{blogBean.list}" var="entity">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{entity.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">TITLE</f:facet>
+                            #{entity.title}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">CONTENT</f:facet>
+                            #{entity.content}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">IMAGE</f:facet>
+                            #{entity.image}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">CREATE DATE</f:facet>
+                            #{entity.create_date}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">CATEGORY</f:facet>
+                            #{entity.category.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">STATUS</f:facet>
+                            #{entity.status}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">WRITER</f:facet>
+                            #{entity.writer.name}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">ADMINISTRATION</f:facet>
+                        <h:commandButton styleClass="btn btn-danger btn-sm" rendered="#{blogBean.entity.id==0}" action="#{blogBean.delete(entity)}" value="Delete">
+
+                            <f:ajax execute="@this" render="blog-table blog-form"></f:ajax>     
 
                         </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{blogBean.entity.id==0}" action="#{blogBean.setEntity(entity)}" value="Update">
-                        
-                        <f:ajax execute="@this" render="blog-table blog-form"></f:ajax>     
+                        <h:commandButton styleClass="btn btn-primary btn-sm" rendered="#{blogBean.entity.id==0}" action="#{blogBean.setEntity(entity)}" value="Update">
+
+                            <f:ajax execute="@this" render="blog-table blog-form"></f:ajax>     
 
                         </h:commandButton>
-                </h:column>
-                <h:column>
-                    <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/blogDetail" value="Detay görüntüle">
-                    
-                        <f:param  name = "id" value = "#{entity.id}" />
-                    
-                    </h:link > 
-                </h:column>
-            </h:dataTable>
+                    </h:column>
+                    <h:column>
+                        <h:link   styleClass="btn btn-warning btn-sm" target="_blank" outcome="/panelDetail/blogDetail" value="Detay görüntüle">
+
+                            <f:param  name = "id" value = "#{entity.id}" />
+
+                        </h:link > 
+                    </h:column>
+                </h:dataTable>
             </h:form>
             <h2>Dosya Yükleyiniz</h2>
-		<p>
-			<h:outputText style="color:red ; font-size:10pt" value="#{blogBean.message}"
-				rendered="#{!empty blogBean.message}"></h:outputText>
-			<h:form  enctype="multipart/form-data">
-				<h:panelGrid>
-					<h:inputFile value="#{blogBean.file1}" styleClass="btn btn-danger"></h:inputFile>
-					<h:commandButton styleClass="btn btn-warning" action="#{blogBean.uploadFile()}"
-						value="Upload"></h:commandButton>
-				</h:panelGrid>
-			</h:form>
-		</p>
+            <p>
+                <h:outputText style="color:red ; font-size:10pt" value="#{blogBean.message}"
+                              rendered="#{!empty blogBean.message}"></h:outputText>
+                <h:form  enctype="multipart/form-data">
+                    <h:panelGrid>
+                        <h:inputFile value="#{blogBean.file1}" styleClass="btn btn-danger"></h:inputFile>
+                        <h:commandButton styleClass="btn btn-warning" action="#{blogBean.uploadFile()}"
+                                         value="Upload"></h:commandButton>
+                    </h:panelGrid>
+                </h:form>
+            </p>
         </div>
 
-</ui:define>
+    </ui:define>
 </ui:composition>
