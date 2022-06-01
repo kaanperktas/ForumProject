@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template.xhtml">
+    <ui:define name='content'>
+        <h2>Dosya Yükleyiniz</h2>
+            <p>
+                <h:outputText style="color:red ; font-size:10pt" value="#{documentBean.message}"
+                              rendered="#{!empty documentBean.message}"></h:outputText>
+                <h:form  enctype="multipart/form-data">
+                    <h:panelGrid>
+                        <h:inputFile value="#{documentBean.file1}" styleClass="btn btn-danger"></h:inputFile>
+                        <h:commandButton styleClass="btn btn-warning" action="#{documentBean.uploadFile()}"
+                                         value="Upload"></h:commandButton>
+                    </h:panelGrid>
+
+                </h:form>
+            </p>
+        
+        <h:form id="category-table">
+                <h:dataTable  styleClass="table table-striped table-hover" value="#{documentBean.list}" var="entity" >
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{entity.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">TITLE</f:facet>
+                            #{entity.filePath}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">TITLE</f:facet>
+                            #{entity.fileName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">STATUS</f:facet>
+                            #{entity.fileType}
+                    </h:column>
+                    <h:column >
+                        
+
+                    </h:column>
+                    
+                </h:dataTable>
+            </h:form>
+ 
+  </ui:define>
+</ui:composition>

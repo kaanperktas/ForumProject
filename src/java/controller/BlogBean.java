@@ -5,7 +5,9 @@
 package controller;
 
 import dao.BlogDao;
+import dao.DocumentDao;
 import entity.Blog;
+import entity.Document;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import utils.Utils;
 
@@ -39,7 +42,31 @@ public class BlogBean implements Serializable {
     private List<Blog> list;
     private Part file1;
     private String message;
+    private Document document;
+    private DocumentDao documentDao;
 
+    public DocumentDao getDocumentDao() {
+        if(this.documentDao == null){
+            this.documentDao = new DocumentDao();
+        }
+        return documentDao;
+    }
+
+    public void setDocumentDao(DocumentDao documentDao) {
+        this.documentDao = documentDao;
+    }
+    
+    
+    public Document getDocument() {
+        if(this.document == null){
+            this.document = new Document();
+        }
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
     public void next() {
         if (this.page == this.getPageCount()) {
             this.page = 1;
@@ -108,7 +135,13 @@ public class BlogBean implements Serializable {
             File savedFile = new File("/internet", fileName);
 
             try (InputStream input = file1.getInputStream()) {
-                Files.copy(input, savedFile.toPath());
+                Files.copy(input, savedFile.toPath(),StandardCopyOption.REPLACE_EXISTING);
+                document = this.getDocument();
+                document.setFilePath(savedFile.getParent());
+                document.setFileName(savedFile.getName());
+                document.setFileType(file1.getContentType());
+                
+                this.getDocumentDao().create(document);
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -5,7 +5,9 @@ import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.validator.ValidatorException;
 import dao.CategoryDao;
+import dao.DocumentDao;
 import entity.Category;
+import entity.Document;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import jakarta.servlet.http.Part;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import utils.Utils;
 
@@ -30,6 +33,8 @@ public class CategoryBean implements Serializable {
     private List<Category> list;
     private Part file1;
     private String message;
+    private Document document;
+    private DocumentDao documentDao;
 
     public Part getFile1() {
         return file1;
@@ -46,6 +51,28 @@ public class CategoryBean implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
+    public DocumentDao getDocumentDao() {
+        if(this.documentDao == null){
+            this.documentDao = new DocumentDao();
+        }
+        return documentDao;
+    }
+
+    public void setDocumentDao(DocumentDao documentDao) {
+        this.documentDao = documentDao;
+    }
+    
+    
+    public Document getDocument() {
+        if(this.document == null){
+            this.document = new Document();
+        }
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
 
     public String uploadFile() throws IOException {
         boolean file1Success = false;
@@ -56,7 +83,13 @@ public class CategoryBean implements Serializable {
             File savedFile = new File("/internet", fileName);
 
             try (InputStream input = file1.getInputStream()) {
-                Files.copy(input, savedFile.toPath());
+                Files.copy(input, savedFile.toPath(),StandardCopyOption.REPLACE_EXISTING);
+                document = this.getDocument();
+                document.setFilePath(savedFile.getParent());
+                document.setFileName(savedFile.getName());
+                document.setFileType(file1.getContentType());
+                
+                this.getDocumentDao().create(document);
             } catch (IOException e) {
                 e.printStackTrace();
             }

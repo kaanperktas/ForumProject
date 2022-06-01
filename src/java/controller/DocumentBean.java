@@ -5,10 +5,7 @@
 package controller;
 
 import dao.DocumentDao;
-import dao.WriterDao;
 import entity.Document;
-import entity.Writer;
-import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
@@ -29,43 +26,20 @@ import utils.Utils;
  *
  * @author mabea
  */
-@Named(value = "writerBean")
+@Named(value = "documentBean")
 @SessionScoped
-public class WriterBean implements Serializable {
+public class DocumentBean implements Serializable {
 
-    private Writer entity;
-    private WriterDao dao;
-    private List<Writer> list;
-    private Document document;
+   
+   private Document document;
     private DocumentDao documentDao;
-        
+    private List<Document> list;
+    
     private Part file1;
     private String message;
-
-    public DocumentDao getDocumentDao() {
-        if(this.documentDao == null){
-            this.documentDao = new DocumentDao();
-        }
-        return documentDao;
+    public DocumentBean() {
     }
 
-    public void setDocumentDao(DocumentDao documentDao) {
-        this.documentDao = documentDao;
-    }
-    
-    
-    public Document getDocument() {
-        if(this.document == null){
-            this.document = new Document();
-        }
-        return document;
-    }
-
-    public void setDocument(Document document) {
-        this.document = document;
-    }
-
-    
     public Part getFile1() {
         return file1;
     }
@@ -81,7 +55,7 @@ public class WriterBean implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
-
+    
     public String uploadFile() throws IOException {
         boolean file1Success = false;
 
@@ -115,80 +89,55 @@ public class WriterBean implements Serializable {
 
         return null;
     }
-
-    public WriterBean() {
+    public void clear(){
+        document = new Document();
     }
-
-    public boolean validateName(FacesContext context, UIComponent cmp, Object value) throws ValidatorException {
-
-        String v = (String) value;
-
-        if (v.isEmpty()) {
-            throw new ValidatorException(new FacesMessage("Name alanı boş olamaz"));
-        } else if (v.length() < 5) {
-            throw new ValidatorException(new FacesMessage("Name alanı 5 karakterden küçük olamaz"));
+    public void create(){
+        this.getDocumentDao().create(document);
+        document = new Document();
+    }
+    public void delete(Document c){
+        this.getDocumentDao().delete(c);
+        document = new Document();
+    }
+    public void update(){
+        this.getDocumentDao().update(document);
+        document = new Document();
+    }
+   public DocumentDao getDocumentDao() {
+        if(this.documentDao == null){
+            this.documentDao = new DocumentDao();
         }
-        return true;
+        return documentDao;
     }
 
-    public String getTitle(int id) {
-        Writer c = this.getDao().findById(id);
-        return c.getName();
+    public void setDocumentDao(DocumentDao documentDao) {
+        this.documentDao = documentDao;
     }
-
-    public void clear() {
-        entity = new Writer();
-    }
-
-    public void create() {
-        this.getDao().create(entity);
-        entity = new Writer();
-    }
-
-    public void delete(Writer c) {
-        this.getDao().delete(c);
-        entity = new Writer();
-    }
-
-    public Writer findById() {
-        return this.getDao().findById(entity.getId());
-
-    }
-
-    public void update() {
-        this.getDao().update(entity);
-        entity = new Writer();
-    }
-
-    public Writer getEntity() {
-        if (entity == null) {
-            entity = new Writer();
+    
+    
+    public Document getDocument() {
+        if(this.document == null){
+            this.document = new Document();
         }
-        return entity;
+        return document;
     }
 
-    public void setEntity(Writer entity) {
-        this.entity = entity;
+    public void setDocument(Document document) {
+        this.document = document;
     }
 
-    public WriterDao getDao() {
-        if (dao == null) {
-            dao = new WriterDao();
-        }
-        return dao;
-    }
-
-    public void setDao(WriterDao dao) {
-        this.dao = dao;
-    }
-
-    public List<Writer> getList() {
-        this.list = this.getDao().getList();
+    public List<Document> getList() {
+        this.list = this.getDocumentDao().getList();
         return list;
     }
 
-    public void setList(List<Writer> list) {
+    public void setList(List<Document> list) {
         this.list = list;
     }
-
+    public Document findById(){
+        return this.getDocumentDao().findById(document.getId());
+       
+    }
+    
 }
